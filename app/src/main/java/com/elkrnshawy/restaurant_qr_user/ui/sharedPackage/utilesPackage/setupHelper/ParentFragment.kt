@@ -12,8 +12,11 @@ import androidx.navigation.Navigation
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedUtilsHelper
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedUtilsHelper.Companion.handleLanguage
 
 open class ParentFragment : Fragment(), setupView {
+
     companion object{
         val UNAUTHORIZED_CODE = 401
     }
@@ -33,41 +36,15 @@ open class ParentFragment : Fragment(), setupView {
     private var loadingDialog: Dialog? = null
     private var loginDialog: Dialog? = null
 
-
     private var retryClickListener: setupView? = null
-
     private var navController: NavController? = null
 
 
-    fun resetPage() {
-        mPaginate?.current_page = 1
-        mPaginate?.total = 0
-        mPaginate?.total_pages = 0
-    }
-
-    open fun getToken(): String {
-        return token
-    }
-
-    open fun getLanguage(): String {
-        return language
-    }
-
-    open fun getmPaginate(): Paginate {
-
-        return mPaginate?:Paginate()
-    }
-
-    open fun getNavController(): NavController? {
-        return navController
-    }
-
     override fun getIntentData() {
-        TODO("Not yet implemented")
+
     }
 
-
-    override fun initSettings() {
+    override fun setupSettings() {
 //        val userData: UserData?= SharedPrefManager.getUserData(context!!)
 //
 //        token=if (userData!=null){
@@ -76,8 +53,8 @@ open class ParentFragment : Fragment(), setupView {
 //        else{
 //            ""
 //        }
-        language = "ar"
-        mPaginate = Paginate(0, 1, 1, "", "", 1, 1);
+        handleLanguage(requireContext())
+//        mPaginate = Paginate(0, 1, 1, "", "", 1, 1);
     }
 
     override fun setupComponents(view: View?) {
@@ -101,12 +78,16 @@ open class ParentFragment : Fragment(), setupView {
         }
     }
 
+    override fun handleToolbar() {
+
+    }
+
     override fun onComponentsClick() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onRetryClick() {
-        TODO("Not yet implemented")
+
     }
 
     override fun showMainLoading() {
@@ -185,6 +166,30 @@ open class ParentFragment : Fragment(), setupView {
 
     }
 
+    // general methods -->
+
+    fun resetPage() {
+        mPaginate?.current_page = 1
+        mPaginate?.total = 0
+        mPaginate?.total_pages = 0
+    }
+
+    open fun getToken(): String {
+        return token
+    }
+
+    open fun getLanguage(): String {
+        return language
+    }
+
+    open fun getmPaginate(): Paginate {
+        return mPaginate?:Paginate()
+    }
+
+    open fun getNavController(): NavController? {
+        return navController
+    }
+
     open fun showLoginDialog(loginMsg: String?) {
         //TODO LOGIN DIALOG
     }
@@ -193,7 +198,6 @@ open class ParentFragment : Fragment(), setupView {
         this.retryClickListener = retryClickListener
     }
 
-    // general methods -->
     open fun <T> isEmptyList(list: List<T>?): Boolean {
         return if (list != null && list.size > 0) {
             vEmpty!!.visibility = View.GONE

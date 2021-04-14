@@ -7,9 +7,11 @@ interface setupView {
 
     fun getIntentData()
 
-    fun initSettings()
+    fun setupSettings()
 
     fun setupComponents(view: View?)
+
+    fun handleToolbar()
 
     fun onComponentsClick()
 

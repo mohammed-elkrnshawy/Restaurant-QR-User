@@ -1,13 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.authPackage.registerPackae.RegisterFragment">
+<layout>
 
-    <TextView
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".ui.authPackage.registerPackae.RegisterFragment">
 
-</FrameLayout>
+        <include layout="@layout/layout_background"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_logo"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fill_data"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <EditText
+                    android:inputType="text"
+                    android:hint="@string/username"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/email"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:inputType="number"
+                    android:hint="@string/phone"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:hint="@string/confirm_password"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <Button
+                    android:background="@drawable/shape_edt"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/register"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorWhite"/>
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:padding="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/already_have_account"
+                        android:textSize="14sp"
+                        android:layout_gravity="end"
+                        android:textColor="@color/colorBlack"/>
+
+                    <TextView
+                        android:paddingStart="5dp"
+                        android:paddingEnd="2dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login"
+                        android:textSize="14sp"
+                        android:layout_gravity="end"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>
