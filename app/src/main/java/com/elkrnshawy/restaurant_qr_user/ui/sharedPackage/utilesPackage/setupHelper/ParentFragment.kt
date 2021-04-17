@@ -191,7 +191,7 @@ open class ParentFragment : Fragment(), setupView {
     }
 
     open fun showLoginDialog(loginMsg: String?) {
-        //TODO LOGIN DIALOG
+
     }
 
     open fun setRetryClickListener(retryClickListener: setupView) {

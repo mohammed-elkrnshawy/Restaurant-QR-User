@@ -20,7 +20,11 @@
     <fragment
         android:id="@+id/restaurantDetailsFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragment"
-        android:label="RestaurantDetailsFragment" />
+        android:label="RestaurantDetailsFragment" >
+        <argument
+            android:name="RestaurantObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </fragment>
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanFragment"

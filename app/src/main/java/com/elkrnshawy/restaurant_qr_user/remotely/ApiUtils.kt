@@ -1,7 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.remotely
 
-import com.panorama.resaltelslamacadmy.remote.servicesPackage.AuthService
-import com.panorama.resaltelslamacadmy.remote.servicesPackage.HomeService
+import com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage.AuthService
+import com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage.HomeService
 
 class ApiUtils {
     companion object {

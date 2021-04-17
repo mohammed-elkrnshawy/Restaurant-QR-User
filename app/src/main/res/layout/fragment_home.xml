@@ -1,7 +1,9 @@
 <layout>
 
     <data>
-
+        <variable
+            name="adapter"
+            type="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage.RestaurantAdapter" />
     </data>
 
     <RelativeLayout
@@ -24,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recycleCategory"
+            adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/view_restaurant"
             />

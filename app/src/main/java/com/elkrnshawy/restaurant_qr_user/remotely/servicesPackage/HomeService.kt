@@ -12,6 +12,6 @@ interface HomeService {
     fun restaurant(
         @Header("X-Localization") localization: String,
         @Header("Accept") accept: String,
-        @Query("page") message: Int
+        @Query("page") page: Int
     ): Call<RestaurantResponse>?
 }
