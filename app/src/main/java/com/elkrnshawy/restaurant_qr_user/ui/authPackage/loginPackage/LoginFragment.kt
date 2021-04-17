@@ -29,7 +29,7 @@ class LoginFragment : ParentFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         if (mainView==null){
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
             mainView = binding.root;
         }
         return mainView;

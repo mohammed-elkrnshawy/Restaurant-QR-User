@@ -8,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.elkrnshawy.restaurant_qr_user.R
-import com.elkrnshawy.restaurant_qr_user.databinding.FragmentLoginBinding
-import com.elkrnshawy.restaurant_qr_user.ui.authPackage.loginPackage.LoginViewModel
+import com.elkrnshawy.restaurant_qr_user.databinding.FragmentHomeBinding
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
     private lateinit var viewModel: HomeViewModel
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentHomeBinding
     private var mainView: View? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +23,7 @@ class HomeFragment : ParentFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mainView==null){
-            binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
             mainView = binding.root;
         }
         return mainView;
@@ -42,4 +41,17 @@ class HomeFragment : ParentFragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
     }
 
+    override fun handleToolbar() {
+        super.handleToolbar()
+        binding.toolbar.imgMenu.setOnClickListener {
+
+        }
+    }
+
+    override fun onComponentsClick() {
+        super.onComponentsClick()
+        binding.cardQR.setOnClickListener {
+            getNavController()?.navigate(R.id.action_homeFragment_to_scanFragment)
+        }
+    }
 }

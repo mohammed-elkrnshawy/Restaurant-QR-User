@@ -10,11 +10,6 @@ class SharedPrefManager {
         private const val SHARED_PREF_NAME = "Restaurant_QR_User"
         private const val LOGIN_STATUS = "login_status"
         private const val FIRST_TIME = "shared_first_time"
-        private const val USER_TYPE = "shared_user_type"
-
-        const val NOTIFICATIONS_SETTING_STATUS = "notifications_settings_status"
-
-        private const val ORDER_STATUS_MODE = "ORDER_STATUS_MODE"
 
         fun setLanguage(ctx: Context, language: String?) {
             val sharedPreferences =
@@ -103,7 +98,6 @@ class SharedPrefManager {
             editor.putString("data", json)
             editor.apply()
         }
-
 
     }
 }

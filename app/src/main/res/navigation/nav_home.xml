@@ -9,5 +9,21 @@
         android:id="@+id/homeFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailsFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragment"
+        android:label="RestaurantDetailsFragment" />
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanFragment"
+        android:label="scan_fragment"
+        tools:layout="@layout/scan_fragment" />
 </navigation>
