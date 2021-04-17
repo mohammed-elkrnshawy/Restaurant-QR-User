@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="vmItem"
+            type="com.elkrnshawy.restaurant_qr_user.models.servicePackage.ServiceItem" />
+    </data>
+
+    <RelativeLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+
+                android:contentDescription="@string/register" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:gravity="center|start"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/cardImg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vmItem.name}"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:paddingStart="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vmItem.name}"
+                android:textSize="10sp"
+                android:textColor="@color/colorGray"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>

@@ -15,4 +15,6 @@
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="already_have_account">بالفعل تملك حساب ؟</string>
     <string name="search">بحث</string>
+    <string name="services">الخدمات</string>
+    <string name="category">قائمة الطعام</string>
 </resources>

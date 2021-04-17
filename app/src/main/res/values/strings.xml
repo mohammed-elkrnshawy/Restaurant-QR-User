@@ -15,4 +15,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="search">Search</string>
+    <string name="services">Services</string>
+    <string name="category">Category</string>
 </resources>

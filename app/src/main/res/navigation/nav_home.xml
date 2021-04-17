@@ -23,7 +23,9 @@
         android:label="RestaurantDetailsFragment" >
         <argument
             android:name="RestaurantObject"
-            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"

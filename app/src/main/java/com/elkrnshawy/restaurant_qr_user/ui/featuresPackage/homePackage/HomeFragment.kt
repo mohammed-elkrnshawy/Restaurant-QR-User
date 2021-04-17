@@ -1,14 +1,12 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentHomeBinding
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
@@ -27,7 +25,11 @@ class HomeFragment : ParentFragment() {
         setupSettings()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         if (mainView==null){
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
             mainView = binding.root;
@@ -47,9 +49,11 @@ class HomeFragment : ParentFragment() {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         restaurantAdapter= RestaurantAdapter(arrayListOf()) { view, position ->
-            arguments?.putSerializable("RestaurantObject",restaurantAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment)
+            val bundle = Bundle()
+            bundle.putSerializable("RestaurantObject",restaurantAdapter.getItem(position))
+            getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
         }
+
         binding.adapter=restaurantAdapter
         viewModel.callRestaurant(1)
         observeData()
@@ -81,7 +85,10 @@ class HomeFragment : ParentFragment() {
                     handleErrorMsg(dataResponse.error)
                 }
                 Status.Success -> {
-                    onSuccess(dataResponse.data?.getData()?.getItems(), dataResponse.data?.getData()?.getPaginate())
+                    onSuccess(
+                        dataResponse.data?.getData()?.getItems(),
+                        dataResponse.data?.getData()?.getPaginate()
+                    )
                     hideSubLoading()
                 }
                 Status.ResponseArrived -> {

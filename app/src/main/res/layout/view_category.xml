@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="vmItem"
+            type="com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="5dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/txt"
+                imageResource="@{vmItem.image}"/>
+
+            <TextView
+                android:text="@{vmItem.name}"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/txt"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

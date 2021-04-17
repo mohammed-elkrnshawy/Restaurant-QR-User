@@ -1,17 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="restaurantObject"
+            type="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </data>
+
     <RelativeLayout
+        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragment">
 
-        <TextView
+        <include layout="@layout/layout_background"/>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <ImageView
+                        imageResource="@{restaurantObject.image}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/places_autocomplete_no_results_for_query" />
+
+                    <TextView
+                        android:layout_above="@id/txtPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{restaurantObject.name}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"/>
+
+                    <TextView
+                        android:id="@+id/txtPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{restaurantObject.phone}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:background="@drawable/shape_txt"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/bar"
+                        android:background="@color/colorWhite"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabs"
+                            android:background="@color/colorWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabGravity="fill"
+                            app:tabTextColor="@color/colorBackground"
+                            app:tabIndicatorColor="@color/colorBackground"
+                            app:tabRippleColor="@color/colorBackground"
+                            app:tabMode="fixed" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager"
+                        android:layout_below="@+id/bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
 
     </RelativeLayout>
 
