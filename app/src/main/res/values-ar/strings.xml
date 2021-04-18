@@ -17,4 +17,5 @@
     <string name="search">بحث</string>
     <string name="services">الخدمات</string>
     <string name="category">قائمة الطعام</string>
+    <string name="details">عن المطعم</string>
 </resources>

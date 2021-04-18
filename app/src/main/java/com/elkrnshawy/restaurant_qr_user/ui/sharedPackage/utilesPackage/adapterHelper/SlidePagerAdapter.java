@@ -28,7 +28,7 @@ public class SlidePagerAdapter extends FragmentStateAdapter {
         Bundle args = new Bundle();
         args.putSerializable("RestaurantObject", item);
 
-        if (position==0){
+        if (position==1){
             if (servicesFragment==null){
                 servicesFragment=new ServicesFragment();
             }

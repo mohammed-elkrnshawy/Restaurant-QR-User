@@ -18,6 +18,9 @@
         <include layout="@layout/layout_background"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
             android:layout_below="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

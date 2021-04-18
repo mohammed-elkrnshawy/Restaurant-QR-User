@@ -63,8 +63,8 @@ class RestaurantDetailsFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         titles = ArrayList()
+        titles.add(getString(R.string.details))
         titles.add(getString(R.string.services))
-        titles.add(getString(R.string.category))
 
         pagerAdapter = SlidePagerAdapter(requireActivity(),restaurantObject)
         binding.viewPager.adapter = pagerAdapter

@@ -17,4 +17,5 @@
     <string name="search">Search</string>
     <string name="services">Services</string>
     <string name="category">Category</string>
+    <string name="details">Details</string>
 </resources>

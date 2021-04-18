@@ -28,6 +28,10 @@ class RestaurantItem : Serializable {
     @Expose
     private var image: String? = null
 
+    @SerializedName("description")
+    @Expose
+    private var description: String? = null
+
     @SerializedName("services")
     @Expose
     private var services: List<ServiceItem?>? = null
@@ -66,6 +70,14 @@ class RestaurantItem : Serializable {
 
     fun setEmail(email: String?) {
         this.email = email
+    }
+
+    fun getDescription(): String? {
+        return description
+    }
+
+    fun setDescription(description: String?) {
+        this.description = description
     }
 
     fun getImage(): String? {

@@ -54,11 +54,11 @@ class CategoryFragment : ParentFragment() {
         super.setupComponents(view)
 
         categoryAdapter= CategoryAdapter(arrayListOf()) { view, position ->
-            /*val bundle = Bundle()
-            bundle.putSerializable("RestaurantObject",restaurantAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)*/
+            val bundle = Bundle()
+            bundle.putSerializable("CategoryObject",categoryAdapter.getItem(position))
+            getNavController()?.navigate(R.id.action_global_categoryFragment, bundle)
         }
-
+        binding.restaurantObject=restaurantObject
         binding.adapter=categoryAdapter
         categoryAdapter.setItems(restaurantObject?.getCategories() as List<CategoryItem>)
     }
