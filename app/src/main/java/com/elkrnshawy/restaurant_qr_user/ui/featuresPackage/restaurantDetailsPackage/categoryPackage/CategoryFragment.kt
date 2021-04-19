@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentCategoryBinding
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
@@ -56,7 +57,7 @@ class CategoryFragment : ParentFragment() {
         categoryAdapter= CategoryAdapter(arrayListOf()) { view, position ->
             val bundle = Bundle()
             bundle.putSerializable("CategoryObject",categoryAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_global_categoryFragment, bundle)
+            findNavController().navigate(R.id.action_global_subcategoryFragment, bundle)
         }
         binding.restaurantObject=restaurantObject
         binding.adapter=categoryAdapter
