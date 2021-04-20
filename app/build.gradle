@@ -130,4 +130,6 @@ dependencies {
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30"
 
+    //QR
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 }
