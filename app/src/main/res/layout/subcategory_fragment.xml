@@ -17,11 +17,14 @@
 
         <include layout="@layout/layout_background"/>
 
+        <include layout="@layout/bar_fragment"
+            android:id="@+id/toolbar"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="10dp"
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
-            android:layout_below="@id/txtAbout"
+            android:layout_below="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             adapter="@{adapter}"

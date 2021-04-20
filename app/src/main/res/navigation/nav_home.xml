@@ -44,6 +44,18 @@
             app:argType="com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_subcategoryFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <action android:id="@+id/action_global_subcategoryFragment" app:destination="@id/subcategoryFragment" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.productPackage.MenuFragment"
+        android:label="menu_fragment"
+        tools:layout="@layout/menu_fragment" >
+        <argument
+            android:name="SubcategoryObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem" />
+    </fragment>
 </navigation>

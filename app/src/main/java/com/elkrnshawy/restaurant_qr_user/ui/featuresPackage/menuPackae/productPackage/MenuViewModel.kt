@@ -1,4 +1,4 @@
-package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae
+package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.productPackage
 
 import androidx.lifecycle.ViewModel
 

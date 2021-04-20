@@ -106,6 +106,7 @@
                         android:id="@+id/viewPager"
                         android:layout_below="@+id/bar"
                         android:layout_width="match_parent"
+                        android:saveEnabled="false"
                         android:layout_height="match_parent"
                         />
 

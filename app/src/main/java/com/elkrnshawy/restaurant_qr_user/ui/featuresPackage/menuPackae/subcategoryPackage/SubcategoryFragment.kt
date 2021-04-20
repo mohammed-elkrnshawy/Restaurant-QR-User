@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.RestaurantDetailsFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.SubcategoryFragmentBinding
+import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
+import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
+import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage.RestaurantAdapter
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragmentArgs
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsViewModel
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryAdapter
@@ -58,6 +62,43 @@ class SubcategoryFragment : ParentFragment() {
 
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
+        categoryAdapter= CategoryAdapter(arrayListOf()) { view, position ->
+            val bundle = Bundle()
+            bundle.putSerializable("SubcategoryObject",categoryAdapter.getItem(position))
+            getNavController()?.navigate(R.id.action_subcategoryFragment_to_menuFragment, bundle)
+        }
         viewModel = ViewModelProvider(this).get(SubcategoryViewModel::class.java)
+        binding.adapter=categoryAdapter
+        viewModel.callSubcategory(categoryItem?.getId()!!,1)
+        observeData()
+    }
+
+    private fun observeData(){
+        viewModel.getDataSubcategory().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showSubLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuccess(
+                            dataResponse.data?.getData()?.getItems(),
+                            dataResponse.data?.getData()?.getPaginate()
+                    )
+                    hideSubLoading()
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+    }
+
+    private fun onSuccess(items: List<CategoryItem>?, paginate: Paginate?) {
+        if (paginate?.current_page==1){
+            categoryAdapter.setItems(items as List<CategoryItem>)
+        }
     }
 }
