@@ -1,5 +1,6 @@
 package com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers
 
+import android.content.Context
 import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -26,7 +27,7 @@ fun loadImage(image: ImageView, url: String?) {
     }
 }
 
-fun convertString(i: Int): String {
-    return i.toString()
+fun convertPrice(context: Context,price: Double): String {
+    return price.toString()+" "+context.resources.getString(R.string.SAR)
 }
 

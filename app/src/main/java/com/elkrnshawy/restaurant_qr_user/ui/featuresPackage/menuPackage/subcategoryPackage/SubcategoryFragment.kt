@@ -1,25 +1,18 @@
-package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.subcategoryPackage
+package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.elkrnshawy.restaurant_qr_user.R
-import com.elkrnshawy.restaurant_qr_user.databinding.RestaurantDetailsFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.SubcategoryFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
-import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage.RestaurantAdapter
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragmentArgs
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsViewModel
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryAdapter
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.adapterHelper.SlidePagerAdapter
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class SubcategoryFragment : ParentFragment() {

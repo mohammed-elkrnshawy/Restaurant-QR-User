@@ -18,4 +18,5 @@
     <string name="services">الخدمات</string>
     <string name="category">قائمة الطعام</string>
     <string name="details">عن المطعم</string>
+    <string name="SAR">ر.س</string>
 </resources>

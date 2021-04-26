@@ -1,6 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage
 
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.SubcategoryResponse
+import com.elkrnshawy.restaurant_qr_user.models.productPackage.ProductResponse
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -24,4 +25,13 @@ interface HomeService {
             @Path("categoryID") categoryID: Int,
             @Query("page") page: Int
     ): Call<SubcategoryResponse>?
+
+    @Headers("Accept: application/json")
+    @GET("products/{subcategoryID}")
+    fun product(
+            @Header("X-Localization") localization: String,
+            @Header("Accept") accept: String,
+            @Path("subcategoryID") subcategoryID: Int,
+            @Query("page") page: Int
+    ): Call<ProductResponse>?
 }

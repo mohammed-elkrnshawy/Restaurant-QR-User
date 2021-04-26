@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.DataBindingUtilKt"/>
+
+        <variable
+            name="vmItem"
+            type="com.elkrnshawy.restaurant_qr_user.models.productPackage.ProductItem" />
+    </data>
+
+    <RelativeLayout
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:cardCornerRadius="5dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                imageResource="@{vmItem.image}"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_toEndOf="@id/card"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="85dp">
+
+            <TextView
+                android:text="@{vmItem.name}"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:id="@+id/txtName"/>
+
+            <TextView
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:layout_below="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorGray"
+                android:textSize="12sp"
+                android:text="@{vmItem.description}"
+                android:id="@+id/txtDescription"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:text="@{DataBindingUtilKt.convertPrice(context,vmItem.price)}"
+            android:layout_margin="5dp"
+            android:layout_alignParentEnd="true"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:id="@+id/txtPrice"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGray"
+            android:layout_below="@id/card"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,4 +1,4 @@
-package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.subcategoryPackage
+package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage
 
 import androidx.lifecycle.ViewModel
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.SubcategoryResponse

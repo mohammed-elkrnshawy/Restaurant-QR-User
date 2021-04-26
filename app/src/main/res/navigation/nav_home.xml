@@ -37,7 +37,7 @@
         tools:layout="@layout/scan_fragment" />
     <fragment
         android:id="@+id/subcategoryFragment"
-        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.subcategoryPackage.SubcategoryFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage.SubcategoryFragment"
         android:label="SubcategoryFragment" >
         <argument
             android:name="CategoryObject"
@@ -51,7 +51,7 @@
     <action android:id="@+id/action_global_subcategoryFragment" app:destination="@id/subcategoryFragment" />
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackae.productPackage.MenuFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.productPackage.MenuFragment"
         android:label="menu_fragment"
         tools:layout="@layout/menu_fragment" >
         <argument

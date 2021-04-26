@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.featuresPackage.menuPackae.productPackage.MenuFragment">
+<layout>
 
-    <TextView
+    <data>
+        <variable
+            name="adapter"
+            type="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.productPackage.ProductAdapter" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".ui.featuresPackage.menuPackage.productPackage.MenuFragment">
 
-</FrameLayout>
+        <include layout="@layout/layout_background"/>
+
+        <include layout="@layout/bar_fragment"
+            android:id="@+id/toolbar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="10dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_product"
+            />
+
+    </RelativeLayout>
+
+</layout>
