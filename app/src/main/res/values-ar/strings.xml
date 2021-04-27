@@ -25,4 +25,6 @@
     <string name="people_number">People Number</string>
     <string name="submit_request">Submit Request</string>
     <string name="fill_data_reservation">Please fill in the information to complete your reservation :</string>
+    <string name="there">There\'s</string>
+    <string name="guest_waiting">Guest wating</string>
 </resources>

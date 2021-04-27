@@ -1,5 +1,6 @@
 package com.elkrnshawy.restaurant_qr_user.ui.authPackage.splashPackage
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentSplashBinding
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
@@ -65,7 +67,8 @@ class SplashFragment : ParentFragment() {
         if (SharedPrefManager.getLoginStatus(requireContext())!!) {
             getNavController()?.navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
-            getNavController()?.navigate(R.id.action_splashFragment_to_loginFragment)
+            startActivity(Intent(requireContext(), HomeActivity::class.java))
+            activity?.finishAffinity()
         }
     }
 }

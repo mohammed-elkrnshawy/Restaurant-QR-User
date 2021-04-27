@@ -14,6 +14,52 @@
             layout="@layout/bar_fragment"
             android:id="@+id/toolbar" />
 
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/there"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="2453"
+                android:textSize="33sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/guest_waiting"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_btn"
+                android:layout_marginTop="25dp"
+                android:text="@string/join_waiting_list"
+                android:textColor="@color/colorPrimary"/>
+
+        </LinearLayout>
 
 
 
