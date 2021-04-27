@@ -11,9 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_QR_User">
 
-        <activity android:name=".ui.sharedPackage.sharedActivity.HomeActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"></activity>
+        <activity android:name=".ui.sharedPackage.sharedActivity.HomeActivity"></activity>
 
         <activity android:name=".ui.sharedPackage.sharedActivity.MainActivity">
             <intent-filter>

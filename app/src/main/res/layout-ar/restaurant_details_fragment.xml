@@ -148,7 +148,7 @@
             app:menu_labels_singleLine="false"
             app:menu_labels_ellipsize="none"
             app:menu_labels_maxLines="-1"
-            app:menu_labels_position="left"
+            app:menu_labels_position="right"
             app:menu_openDirection="up"
             app:menu_backgroundColor="@android:color/transparent">
 

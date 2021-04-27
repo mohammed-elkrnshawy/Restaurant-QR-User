@@ -80,4 +80,16 @@ class RestaurantDetailsFragment : ParentFragment() {
 
     }
 
+    override fun onComponentsClick() {
+        super.onComponentsClick()
+
+        binding.menuReservation.setOnClickListener {
+            getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment)
+            binding.fabMenu.close(true)
+        }
+
+        binding.menuWaiting.setOnClickListener {
+            getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_waitingListFragment)
+        }
+    }
 }

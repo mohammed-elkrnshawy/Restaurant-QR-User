@@ -29,6 +29,12 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_subcategoryFragment"
             app:destination="@id/subcategoryFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_reservationNewFragment"
+            app:destination="@id/reservationNewFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_waitingListFragment"
+            app:destination="@id/waitingListFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
@@ -58,4 +64,14 @@
             android:name="SubcategoryObject"
             app:argType="com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem" />
     </fragment>
+    <fragment
+        android:id="@+id/reservationNewFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationNewFragment"
+        android:label="reservation_new_fragment"
+        tools:layout="@layout/reservation_new_fragment" />
+    <fragment
+        android:id="@+id/waitingListFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.waitingListPackage.WaitingListFragment"
+        android:label="waiting_list_fragment"
+        tools:layout="@layout/waiting_list_fragment" />
 </navigation>

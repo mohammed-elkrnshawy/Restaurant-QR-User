@@ -132,4 +132,7 @@ dependencies {
 
     //QR
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+    //Floating Menu
+    implementation 'com.github.clans:fab:1.6.4'
 }

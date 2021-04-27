@@ -19,4 +19,10 @@
     <string name="category">قائمة الطعام</string>
     <string name="details">عن المطعم</string>
     <string name="SAR">ر.س</string>
+    <string name="reservation">New Reservation</string>
+    <string name="join_waiting_list">Waiting List</string>
+    <string name="reservation_date_time">Reservation Date And Time</string>
+    <string name="people_number">People Number</string>
+    <string name="submit_request">Submit Request</string>
+    <string name="fill_data_reservation">Please fill in the information to complete your reservation :</string>
 </resources>

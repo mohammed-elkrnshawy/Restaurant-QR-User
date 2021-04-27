@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.featuresPackage.reservationPackage.ReservationNewFragment">
+
+        <include layout="@layout/layout_background"/>
+
+        <include
+            layout="@layout/bar_fragment"
+            android:id="@+id/toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:fillViewport="true"
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:elevation="5dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fill_data_reservation"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <EditText
+                    android:elevation="5dp"
+                    android:inputType="text"
+                    android:hint="@string/username"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+
+
+                <EditText
+                    android:elevation="5dp"
+                    android:inputType="number"
+                    android:hint="@string/phone"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <TextView
+                    android:elevation="5dp"
+                    android:hint="@string/reservation_date_time"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:elevation="5dp"
+                    android:inputType="number"
+                    android:hint="@string/people_number"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edt"/>
+
+                <EditText
+                    android:elevation="5dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:gravity="top"
+                    android:hint="@string/notes"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="4"
+                    android:background="@drawable/shape_edt"/>
+
+                <Button
+                    android:elevation="5dp"
+                    android:background="@drawable/shape_edt"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="@string/submit_request"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorWhite"/>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+
+</layout>
