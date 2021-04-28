@@ -20,7 +20,7 @@ class HomeViewModel : ViewModel() {
 
     fun callRestaurant(page: Int) {
         dataObserveRestaurant.postLoading()
-        ApiUtils.getHomeService()?.restaurant(ConstantsHelper.Localization,ConstantsHelper.ACCEPT,page)?.
+        ApiUtils.getHomeService()?.restaurant(ConstantsHelper.Localization,ConstantsHelper.ACCEPT,page)?.clone()?.
         enqueue(object : Callback<RestaurantResponse?> {
             override fun onResponse(call: Call<RestaurantResponse?>, response: Response<RestaurantResponse?>) {
                 if (response.isSuccessful){

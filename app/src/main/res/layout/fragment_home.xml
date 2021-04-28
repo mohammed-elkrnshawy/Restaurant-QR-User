@@ -1,4 +1,6 @@
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -7,9 +9,6 @@
     </data>
 
     <RelativeLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.featuresPackage.homePackage.HomeFragment">
@@ -17,8 +16,6 @@
         <include layout="@layout/layout_background"/>
 
         <include layout="@layout/bar_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/toolbar"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -49,6 +46,7 @@
                 android:src="@drawable/ic_barcode"/>
         </androidx.cardview.widget.CardView>
 
+        <include layout="@layout/layout_helper" />
 
     </RelativeLayout>
 

@@ -33,6 +33,8 @@
             tools:listitem="@layout/view_category"
             />
 
+        <include layout="@layout/layout_helper" />
+
     </RelativeLayout>
 
 </layout>

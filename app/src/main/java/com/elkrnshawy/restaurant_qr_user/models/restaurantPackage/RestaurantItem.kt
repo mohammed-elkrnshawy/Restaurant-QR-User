@@ -1,5 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.models.restaurantPackage
 
+import android.content.Context
+import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
 import com.elkrnshawy.restaurant_qr_user.models.servicePackage.ServiceItem
 import com.google.gson.annotations.Expose
@@ -102,5 +104,18 @@ class RestaurantItem : Serializable {
 
     fun setCategories(categories: List<CategoryItem?>?) {
         this.categories = categories
+    }
+
+    fun getCategoriesString(context: Context) : String {
+        var string = ""
+        for (item:CategoryItem? in categories!!){
+            string +=item?.getName()+", "
+        }
+        string = if (string.isNotEmpty())
+            string.substring(0,(string.length-2))
+        else
+            context.resources.getString(R.string.no_category)
+
+        return string
     }
 }

@@ -45,7 +45,7 @@ class SubcategoryFragment : ParentFragment() {
         super.onViewCreated(view, savedInstanceState)
         getIntentData()
         setupComponents(mainView)
-
+        handleToolbar()
     }
 
     override fun getIntentData() {
@@ -66,11 +66,19 @@ class SubcategoryFragment : ParentFragment() {
         observeData()
     }
 
+    override fun handleToolbar() {
+        super.handleToolbar()
+        binding.toolbar.stringTittle=context?.resources?.getString(R.string.category)
+        binding.toolbar.imgBack.setOnClickListener {
+            getNavController()?.navigateUp()
+        }
+    }
+
     private fun observeData(){
         viewModel.getDataSubcategory().observe(viewLifecycleOwner, Observer { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
-                    showSubLoading()
+                    showMainLoading()
                 }
                 Status.Failure -> {
                     handleErrorMsg(dataResponse.error)
@@ -80,7 +88,7 @@ class SubcategoryFragment : ParentFragment() {
                             dataResponse.data?.getData()?.getItems(),
                             dataResponse.data?.getData()?.getPaginate()
                     )
-                    hideSubLoading()
+                    handleErrorMsg(null)
                 }
                 Status.ResponseArrived -> {
 

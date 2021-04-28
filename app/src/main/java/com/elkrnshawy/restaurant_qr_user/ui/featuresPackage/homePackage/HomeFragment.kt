@@ -79,7 +79,7 @@ class HomeFragment : ParentFragment() {
         viewModel.getDataRestaurant().observe(viewLifecycleOwner, Observer { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
-                    showSubLoading()
+                    showMainLoading()
                 }
                 Status.Failure -> {
                     handleErrorMsg(dataResponse.error)
@@ -89,7 +89,7 @@ class HomeFragment : ParentFragment() {
                         dataResponse.data?.getData()?.getItems(),
                         dataResponse.data?.getData()?.getPaginate()
                     )
-                    hideSubLoading()
+                    handleErrorMsg(null)
                 }
                 Status.ResponseArrived -> {
 

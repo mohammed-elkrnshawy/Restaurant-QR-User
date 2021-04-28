@@ -32,6 +32,8 @@
             tools:listitem="@layout/view_product"
             />
 
+        <include layout="@layout/layout_helper" />
+
     </RelativeLayout>
 
 </layout>

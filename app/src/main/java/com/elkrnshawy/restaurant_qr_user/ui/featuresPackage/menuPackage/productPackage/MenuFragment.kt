@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.MenuFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.SubcategoryFragmentBinding
@@ -49,7 +50,7 @@ class MenuFragment : ParentFragment() {
         super.onViewCreated(view, savedInstanceState)
         getIntentData()
         setupComponents(mainView)
-
+        handleToolbar()
     }
 
     override fun getIntentData() {
@@ -70,11 +71,19 @@ class MenuFragment : ParentFragment() {
         observeData()
     }
 
+    override fun handleToolbar() {
+        super.handleToolbar()
+        binding.toolbar.stringTittle=context?.getString(R.string.phone)
+        binding.toolbar.imgBack.setOnClickListener {
+            getNavController()?.navigateUp()
+        }
+    }
+
     private fun observeData(){
         viewModel.getDataProduct().observe(viewLifecycleOwner, Observer { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
-                    showSubLoading()
+                    showMainLoading()
                 }
                 Status.Failure -> {
                     handleErrorMsg(dataResponse.error)
@@ -84,7 +93,7 @@ class MenuFragment : ParentFragment() {
                             dataResponse.data?.getData()?.getItems(),
                             dataResponse.data?.getData()?.getPaginate()
                     )
-                    hideSubLoading()
+                    handleErrorMsg(null)
                 }
                 Status.ResponseArrived -> {
 
