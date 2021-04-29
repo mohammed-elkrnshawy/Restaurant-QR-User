@@ -30,4 +30,9 @@
     <string name="guest_waiting">Guest wating</string>
     <string name="no_category">No Category Selected</string>
     <string name="cancel">Cancel</string>
+    <string name="require_field">Required Field</string>
+    <string name="phone_not_correct">Phone Pattern Not Correct</string>
+    <string name="is_weak">Is Weak</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="loading">Loading</string>
 </resources>

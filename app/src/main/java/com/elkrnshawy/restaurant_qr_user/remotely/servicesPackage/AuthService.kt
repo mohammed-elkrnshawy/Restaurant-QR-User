@@ -35,12 +35,11 @@ interface AuthService {
 
 
     @Headers("Accept: application/json")
-    @POST("login/user")
+    @POST("auth/login")
     fun loginUser(
         @Header("X-Localization") localization: String,
         @Header("Accept") accept: String,
-        @Query("type") device: String,
-        @Query("email") email: String,
+        @Query("phone") phone: String,
         @Query("password") password: String,
         @Query("fcm") fcm: String
     ): Call<AuthResponse?>?

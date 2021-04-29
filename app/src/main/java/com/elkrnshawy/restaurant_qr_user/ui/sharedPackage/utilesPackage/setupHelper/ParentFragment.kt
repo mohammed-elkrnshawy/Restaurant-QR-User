@@ -107,12 +107,12 @@ open class ParentFragment : Fragment(), setupView {
     }
 
     override fun showSubLoading() {
-       /* if (loadingDialog == null) {
+        if (loadingDialog == null) {
             loadingDialog = Dialog(requireActivity(), R.style.NewDialog1)
             loadingDialog!!.setContentView(R.layout.view_dialog_loading)
             loadingDialog!!.setCancelable(false)
         }
-        loadingDialog!!.show()*/
+        loadingDialog!!.show()
     }
 
     override fun hideSubLoading() {

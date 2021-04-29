@@ -5,14 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentLoginBinding
+import com.elkrnshawy.restaurant_qr_user.models.UserData
+import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage.HomeViewModel
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.Validator
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 
@@ -45,6 +51,7 @@ class LoginFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        observeData()
     }
 
     override fun onComponentsClick() {
@@ -55,7 +62,7 @@ class LoginFragment : ParentFragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            onSuccess()
+            checkData()
         }
     }
 
@@ -70,7 +77,59 @@ class LoginFragment : ParentFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    private fun onSuccess(){
+    private fun checkData(){
+        binding.edtPhone.tag=resources.getString(R.string.phone)
+        binding.edtPassword.tag=resources.getString(R.string.password)
+
+        /*if (Validator().checkConnection(context)){
+            Toast.makeText(
+                    context,
+                    resources.getString(R.string.no_internet_connection),
+                    Toast.LENGTH_LONG
+            ).show()
+            return
+        }*/
+
+        val editTexts = arrayOf<EditText>(
+                binding.edtPhone,
+                binding.edtPassword
+        )
+        if (!Validator().validateInputField(editTexts, requireActivity())) {
+            return
+        }
+
+        viewModel.getFCM(
+                binding.edtPhone.text.toString().trim(),
+                binding.edtPassword.text.toString().trim()
+        )
+    }
+
+    private fun observeData(){
+        viewModel.getDataLogin().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showSubLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuccess(
+                            dataResponse.data?.getData()!!
+                    )
+                    handleErrorMsg(null)
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+    }
+
+    private fun onSuccess(userObject: UserData){
+        SharedPrefManager.setLoginStatus(true,requireContext())
+        SharedPrefManager.setUserData(userObject,requireContext())
+
         startActivity(Intent(requireContext(), HomeActivity::class.java))
         activity?.finishAffinity()
     }
