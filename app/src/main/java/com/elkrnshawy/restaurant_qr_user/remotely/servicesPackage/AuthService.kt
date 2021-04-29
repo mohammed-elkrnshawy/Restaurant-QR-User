@@ -11,26 +11,15 @@ import retrofit2.http.Query
 interface AuthService {
 
     @Headers("Accept: application/json")
-    @POST("register/user")
+    @POST("auth/register")
     fun registerUser(
         @Header("X-Localization") localization: String?,
         @Header("Accept") accept: String?,
-        @Query("type") device: String?,
         @Query("name") name: String?,
-        @Query("phone") phone: String?,
         @Query("email") email: String?,
+        @Query("phone") phone: String?,
         @Query("password") password: String?,
-        @Query("password_confirmation") password_confirmation: String?,
-        @Query("age") age: Int?,
-        @Query("gender") gender: String?,
-        @Query("nationality_id") nationality_id: Int?,
-        @Query("country_id") country_id: Int,
-        @Query("facebook_page") facebook_page: String?,
-        @Query("how_know_us") how_know_us: String?,
-        @Query("islam_date") islam_date: String?,
-        @Query("lang_id") lang_id: Int?,
-        @Query("job") job: String?,
-        @Query("fcm") fcm: String?
+        @Query("token") token: String?
     ): Call<AuthResponse?>?
 
 
@@ -41,7 +30,7 @@ interface AuthService {
         @Header("Accept") accept: String,
         @Query("phone") phone: String,
         @Query("password") password: String,
-        @Query("fcm") fcm: String
+        @Query("token") token: String
     ): Call<AuthResponse?>?
 
 }

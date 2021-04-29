@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.elkrnshawy.restaurant_qr_user.models.authPackage.AuthResponse
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.MutableResultWrapper
-import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantResponse
 import com.elkrnshawy.restaurant_qr_user.remotely.ApiUtils
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.ConstantsHelper
 import retrofit2.Call
