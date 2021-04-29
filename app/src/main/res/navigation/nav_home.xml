@@ -77,5 +77,9 @@
         android:id="@+id/waitingListFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.waitingListPackage.WaitingListFragment"
         android:label="waiting_list_fragment"
-        tools:layout="@layout/waiting_list_fragment" />
+        tools:layout="@layout/waiting_list_fragment" >
+        <argument
+            android:name="restaurantObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </fragment>
 </navigation>

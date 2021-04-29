@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <import type="android.view.View" />
+        <import type="com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.DataBindingUtilKt" />
+
+        <variable
+            name="vmItem"
+            type="com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountData" />
+    </data>
+
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +19,7 @@
 
         <include layout="@layout/layout_background"/>
 
-        <include
-            layout="@layout/bar_fragment"
+        <include layout="@layout/bar_fragment"
             android:id="@+id/toolbar" />
 
         <LinearLayout
@@ -37,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="2453"
+                android:text="@{DataBindingUtilKt.convertString(context,vmItem.watinglistCount)}"
                 android:textSize="33sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"/>
@@ -52,6 +60,7 @@
                 android:textColor="@color/colorBlack"/>
 
             <Button
+                android:id="@+id/btnJoin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/shape_btn"
@@ -61,7 +70,7 @@
 
         </LinearLayout>
 
-
+        <include layout="@layout/layout_helper" />
 
     </RelativeLayout>
 

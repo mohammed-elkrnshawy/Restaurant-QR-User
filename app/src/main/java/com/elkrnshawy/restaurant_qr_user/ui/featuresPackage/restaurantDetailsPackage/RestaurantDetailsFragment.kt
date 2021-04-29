@@ -87,7 +87,9 @@ class RestaurantDetailsFragment : ParentFragment() {
 
         binding.menuReservation.setOnClickListener {
             if (SharedPrefManager.getLoginStatus(requireContext())!!){
-                getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment)
+                val bundle = Bundle()
+                bundle.putSerializable("RestaurantObject",restaurantObject)
+                getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment,bundle)
             }else{
                 SharedUtilsHelper.loginDialog(requireContext())
             }
@@ -95,7 +97,14 @@ class RestaurantDetailsFragment : ParentFragment() {
         }
 
         binding.menuWaiting.setOnClickListener {
-            getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_waitingListFragment)
+            if (SharedPrefManager.getLoginStatus(requireContext())!!){
+                val bundle = Bundle()
+                bundle.putSerializable("RestaurantObject",restaurantObject)
+                getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_waitingListFragment,bundle)
+            }else{
+                SharedUtilsHelper.loginDialog(requireContext())
+            }
+            binding.fabMenu.close(true)
         }
     }
 }

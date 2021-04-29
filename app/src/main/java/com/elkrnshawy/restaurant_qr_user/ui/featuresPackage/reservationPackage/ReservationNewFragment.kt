@@ -45,9 +45,9 @@ class ReservationNewFragment : ParentFragment() {
                     container,
                     false
             )
-            mainView = binding.root;
+            mainView = binding.root
         }
-        return mainView;
+        return mainView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,6 +60,7 @@ class ReservationNewFragment : ParentFragment() {
 
     override fun getIntentData() {
         super.getIntentData()
+        restaurantObject=ReservationNewFragmentArgs.fromBundle(requireArguments()).restaurantObject
         userObject=SharedPrefManager.getUserData(requireContext())!!
         binding.edtUsername.setText(userObject.getName())
         binding.edtPhone.setText(userObject.getPhone())
@@ -102,7 +103,7 @@ class ReservationNewFragment : ParentFragment() {
             return
         }
 
-        viewModel.callReservation(1,userObject.getToken().toString(),binding.edtUsername.text.toString(),
+        viewModel.callReservation(restaurantObject?.getId()!!,userObject.getToken().toString(),binding.edtUsername.text.toString(),
         binding.edtPhone.text.toString(),binding.edtNotes.text.toString(),binding.edtPeopleNumber.text.toString().toInt())
     }
 
