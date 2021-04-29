@@ -59,7 +59,7 @@ class WaitingListFragment : ParentFragment() {
 
     override fun getIntentData() {
         super.getIntentData()
-        //restaurantObject= ReservationNewFragmentArgs.fromBundle(requireArguments()).restaurantObject
+        restaurantObject=WaitingListFragmentArgs.fromBundle(requireArguments()).restaurantObject
         userObject= SharedPrefManager.getUserData(requireContext())!!
     }
 
@@ -72,7 +72,7 @@ class WaitingListFragment : ParentFragment() {
 
     override fun handleToolbar() {
         super.handleToolbar()
-        binding.toolbar.stringTittle=context?.getString(R.string.join_waiting_list)
+        binding.toolbar.stringTittle=context?.getString(R.string.waiting_list)
         binding.toolbar.imgBack.setOnClickListener {
             getNavController()?.navigateUp()
         }
