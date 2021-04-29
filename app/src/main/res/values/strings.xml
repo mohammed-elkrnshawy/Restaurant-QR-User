@@ -35,4 +35,7 @@
     <string name="is_weak">Is Weak</string>
     <string name="please_wait">Please Wait</string>
     <string name="loading">Loading</string>
+    <string name="reservation_date">Reservation Date</string>
+    <string name="confirm">Confirm</string>
+    <string name="reservation_success">Reservation Success</string>
 </resources>

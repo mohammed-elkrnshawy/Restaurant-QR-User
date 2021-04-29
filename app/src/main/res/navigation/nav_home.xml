@@ -68,7 +68,11 @@
         android:id="@+id/reservationNewFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationNewFragment"
         android:label="reservation_new_fragment"
-        tools:layout="@layout/reservation_new_fragment" />
+        tools:layout="@layout/reservation_new_fragment" >
+        <argument
+            android:name="restaurantObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </fragment>
     <fragment
         android:id="@+id/waitingListFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.waitingListPackage.WaitingListFragment"

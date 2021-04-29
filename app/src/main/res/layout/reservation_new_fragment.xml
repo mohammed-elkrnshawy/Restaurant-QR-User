@@ -6,12 +6,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:ignore="RtlCompat"
         tools:context=".ui.featuresPackage.reservationPackage.ReservationNewFragment">
 
         <include layout="@layout/layout_background"/>
 
-        <include
-            layout="@layout/bar_fragment"
+        <include layout="@layout/bar_fragment"
             android:id="@+id/toolbar" />
 
         <androidx.core.widget.NestedScrollView
@@ -39,6 +39,8 @@
                     android:textColor="@color/colorBlack"/>
 
                 <EditText
+                    android:textAlignment="viewStart"
+                    android:id="@+id/edtUsername"
                     android:elevation="5dp"
                     android:inputType="text"
                     android:hint="@string/username"
@@ -58,6 +60,8 @@
 
 
                 <EditText
+                    android:textAlignment="viewStart"
+                    android:id="@+id/edtPhone"
                     android:elevation="5dp"
                     android:inputType="number"
                     android:hint="@string/phone"
@@ -75,6 +79,8 @@
                     android:background="@drawable/shape_edt"/>
 
                 <TextView
+                    android:textAlignment="center"
+                    android:id="@+id/txtDate"
                     android:elevation="5dp"
                     android:hint="@string/reservation_date_time"
                     android:paddingEnd="15dp"
@@ -92,6 +98,8 @@
                     android:background="@drawable/shape_edt"/>
 
                 <EditText
+                    android:textAlignment="viewStart"
+                    android:id="@+id/edtPeopleNumber"
                     android:elevation="5dp"
                     android:inputType="number"
                     android:hint="@string/people_number"
@@ -109,6 +117,8 @@
                     android:background="@drawable/shape_edt"/>
 
                 <EditText
+                    android:textAlignment="viewStart"
+                    android:id="@+id/edtNotes"
                     android:elevation="5dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
@@ -126,9 +136,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="4"
-                    android:background="@drawable/shape_edt"/>
+                    android:background="@drawable/shape_edt"
+                    />
 
                 <Button
+                    android:id="@+id/btnConfirm"
                     android:backgroundTint="@color/colorPrimary"
                     android:elevation="5dp"
                     android:background="@drawable/shape_edt"
@@ -148,6 +160,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <include layout="@layout/layout_helper" />
 
     </RelativeLayout>
 

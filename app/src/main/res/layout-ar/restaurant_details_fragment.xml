@@ -39,6 +39,11 @@
                         android:layout_height="match_parent"
                         android:contentDescription="@string/places_autocomplete_no_results_for_query" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrayWhite" />
+
                     <TextView
                         android:layout_above="@id/txtPhone"
                         android:layout_width="wrap_content"
@@ -171,6 +176,8 @@
                 app:fab_colorNormal="@color/colorPrimaryDark"
                 app:backgroundTint="@color/colorPrimaryDark"
                 app:fab_size="mini"
+                app:fab_colorRipple="@color/colorPrimary"
+                app:fab_progress_backgroundColor="@color/colorPrimary"
                 app:fab_label="@string/reservation" />
 
             <com.github.clans.fab.FloatingActionButton
@@ -180,6 +187,8 @@
                 app:rippleColor="@color/colorPrimaryDark"
                 app:fab_colorNormal="@color/colorPrimaryDark"
                 app:backgroundTint="@color/colorPrimaryDark"
+                app:fab_colorRipple="@color/colorPrimary"
+                app:fab_progress_backgroundColor="@color/colorPrimary"
                 app:fab_size="mini"
                 app:fab_label="@string/join_waiting_list" />
 

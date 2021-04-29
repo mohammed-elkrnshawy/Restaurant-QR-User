@@ -35,4 +35,7 @@
     <string name="loading">جاري التحميل</string>
     <string name="notes">الملاحظات</string>
     <string name="please_wait">من فضلك انتظر</string>
+    <string name="reservation_date">Reservation Date</string>
+    <string name="confirm">Confirm</string>
+    <string name="reservation_success">Reservation Success</string>
 </resources>
