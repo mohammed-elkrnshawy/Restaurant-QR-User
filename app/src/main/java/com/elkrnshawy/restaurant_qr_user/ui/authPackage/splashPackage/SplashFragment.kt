@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentSplashBinding
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.ConstantsHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
@@ -55,16 +56,7 @@ class SplashFragment : ParentFragment() {
     }
 
     private fun choice() {
-        if (SharedPrefManager.isFirstTime(requireContext())!!) {
-            SharedPrefManager.setFirstTime(false,requireContext())
-            getNavController()?.navigate(R.id.action_splashFragment_to_loginFragment)
-        } else {
-            checkLoginStatus()
-        }
-    }
-
-    private fun checkLoginStatus() {
-        if (SharedPrefManager.getLoginStatus(requireContext())!!) {
+        if (ConstantsHelper.toLogin) {
             getNavController()?.navigate(R.id.action_splashFragment_to_loginFragment)
         } else {
             startActivity(Intent(requireContext(), HomeActivity::class.java))

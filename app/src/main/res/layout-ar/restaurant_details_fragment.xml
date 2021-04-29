@@ -167,7 +167,6 @@
                 android:id="@+id/menuReservation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
                 app:rippleColor="@color/colorPrimaryDark"
                 app:fab_colorNormal="@color/colorPrimaryDark"
                 app:backgroundTint="@color/colorPrimaryDark"
@@ -178,7 +177,9 @@
                 android:id="@+id/menuWaiting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
+                app:rippleColor="@color/colorPrimaryDark"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:backgroundTint="@color/colorPrimaryDark"
                 app:fab_size="mini"
                 app:fab_label="@string/join_waiting_list" />
 

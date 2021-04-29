@@ -29,4 +29,5 @@
     <string name="there">There\'s</string>
     <string name="guest_waiting">Guest wating</string>
     <string name="no_category">No Category Selected</string>
+    <string name="cancel">Cancel</string>
 </resources>

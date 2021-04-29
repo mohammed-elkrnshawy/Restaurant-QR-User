@@ -10,6 +10,8 @@ import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.RestaurantDetailsFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.adapterHelper.SlidePagerAdapter
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedUtilsHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -84,7 +86,11 @@ class RestaurantDetailsFragment : ParentFragment() {
         super.onComponentsClick()
 
         binding.menuReservation.setOnClickListener {
-            getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment)
+            if (SharedPrefManager.getLoginStatus(requireContext())!!){
+                getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment)
+            }else{
+                SharedUtilsHelper.loginDialog(requireContext())
+            }
             binding.fabMenu.close(true)
         }
 

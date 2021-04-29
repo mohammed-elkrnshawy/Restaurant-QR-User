@@ -1,17 +1,25 @@
 package com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers
 
-import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.provider.Settings
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import com.elkrnshawy.restaurant_qr_user.R
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.MainActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager.Companion.getLocalization
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager.Companion.setLanguage
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -87,8 +95,8 @@ class SharedUtilsHelper {
         @SuppressLint("HardwareIds")
         fun getDeviceID(context: Context): String? {
             return Settings.Secure.getString(
-                context.contentResolver,
-                Settings.Secure.ANDROID_ID
+                    context.contentResolver,
+                    Settings.Secure.ANDROID_ID
             )
         }
 
@@ -139,7 +147,7 @@ class SharedUtilsHelper {
                 .hideStatusBar(false)
                 .allowZooming(true)
                 .allowSwipeToDismiss(true)
-                .setBackgroundColorRes(R.color.black)
+                .setBackgroundColorRes(R.color.colorBlack)
                 .show()
         }
 
@@ -152,7 +160,7 @@ class SharedUtilsHelper {
                 .hideStatusBar(false)
                 .allowZooming(true)
                 .allowSwipeToDismiss(true)
-                .setBackgroundColorRes(R.color.black)
+                .setBackgroundColorRes(R.color.colorBlack)
                 .show()
         }
 
@@ -162,14 +170,38 @@ class SharedUtilsHelper {
             val startTime = DatePickerDialog(context, { view, year, monthOfYear, dayOfMonth ->
                 val newDate = Calendar.getInstance()
                 newDate[year, monthOfYear] = dayOfMonth
-                txtCalender.text=simpleFormat.format(newDate.time)
+                txtCalender.text = simpleFormat.format(newDate.time)
             },
-                newCalendar[Calendar.YEAR],
-                newCalendar[Calendar.MONTH],
-                newCalendar[Calendar.DAY_OF_MONTH]
+                    newCalendar[Calendar.YEAR],
+                    newCalendar[Calendar.MONTH],
+                    newCalendar[Calendar.DAY_OF_MONTH]
             )
             startTime.datePicker.minDate = System.currentTimeMillis() - 1000
             startTime.show()
+        }
+
+        fun loginDialog(context: Context){
+            val dialog = Dialog(context)
+            dialog.setContentView(R.layout.layout_not_login)
+            val window: Window? = dialog.window
+            window?.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+
+            val btnLogin: Button = dialog.findViewById(R.id.btnLogin)
+            val btnCancel: Button = dialog.findViewById(R.id.btnCancel)
+
+            Objects.requireNonNull(dialog.window)?.attributes?.windowAnimations = R.style.alert_dialog
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            btnLogin.setOnClickListener { view ->
+                dialog.dismiss()
+                ConstantsHelper.toLogin=true
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+                (context as Activity).finishAffinity()
+            }
+
+            btnCancel.setOnClickListener { view -> dialog.dismiss() }
+            dialog.show()
         }
 
     }
