@@ -68,7 +68,7 @@ class SubcategoryFragment : ParentFragment() {
 
     override fun handleToolbar() {
         super.handleToolbar()
-        binding.toolbar.stringTittle=context?.resources?.getString(R.string.category)
+        binding.toolbar.stringTittle=context?.resources?.getString(R.string.subcategory)
         binding.toolbar.imgBack.setOnClickListener {
             getNavController()?.navigateUp()
         }

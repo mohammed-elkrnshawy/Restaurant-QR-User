@@ -1,17 +1,23 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentHomeBinding
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
+import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
@@ -19,6 +25,7 @@ class HomeFragment : ParentFragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var restaurantAdapter: RestaurantAdapter<RestaurantItem>
     private var mainView: View? =null
+    private var qrClicked : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +57,11 @@ class HomeFragment : ParentFragment() {
 
         restaurantAdapter= RestaurantAdapter(arrayListOf()) { view, position ->
             val bundle = Bundle()
-            bundle.putSerializable("RestaurantObject",restaurantAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
+            bundle.putSerializable("RestaurantObject", restaurantAdapter.getItem(position))
+            getNavController()?.navigate(
+                R.id.action_homeFragment_to_restaurantDetailsFragment,
+                bundle
+            )
         }
 
         binding.adapter=restaurantAdapter
@@ -69,9 +79,9 @@ class HomeFragment : ParentFragment() {
     override fun onComponentsClick() {
         super.onComponentsClick()
 
-
         binding.cardQR.setOnClickListener {
-            getNavController()?.navigate(R.id.action_homeFragment_to_scanFragment)
+            qrClicked=true
+            startActivityForResult(Intent(requireContext(), ScanActivity::class.java),200)
         }
     }
 
@@ -96,11 +106,52 @@ class HomeFragment : ParentFragment() {
                 }
             }
         })
+
+
+        viewModel.getDataRestaurantQR().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showMainLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuccessQR(dataResponse.data?.getData())
+                    handleErrorMsg(null)
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+    }
+
+    private fun onSuccessQR(data: RestaurantItem?) {
+       if (qrClicked){
+           val bundle = Bundle()
+           bundle.putSerializable("RestaurantObject", data)
+           getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
+           qrClicked=false
+       }
     }
 
     private fun onSuccess(items: List<RestaurantItem?>?, paginate: Paginate?) {
         if (paginate?.current_page==1){
             restaurantAdapter.setItems(items as List<RestaurantItem>)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === 200) {
+            if (resultCode === Activity.RESULT_OK) {
+                val result: String = data?.getStringExtra("result")!!
+                viewModel.callRestaurantQR(result)
+            }
+            if (resultCode === Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
         }
     }
 }

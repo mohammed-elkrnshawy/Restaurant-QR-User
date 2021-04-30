@@ -19,7 +19,7 @@
     <string name="category">قائمة الطعام</string>
     <string name="details">عن المطعم</string>
     <string name="SAR">ر.س</string>
-    <string name="reservation">حجز المكان</string>
+    <string name="reservation">طلب حجز موعد</string>
     <string name="join_waiting_list">انضم الى قائمة الانتظار</string>
     <string name="reservation_date_time">تاريخ و وقت الحجز</string>
     <string name="people_number">عدد الاشخاص</string>
@@ -39,4 +39,6 @@
     <string name="confirm">Confirm</string>
     <string name="reservation_success">Reservation Success</string>
     <string name="waiting_list">قائمة الانتظار</string>
+    <string name="subcategory">Subcategory</string>
+    <string name="products">Products</string>
 </resources>

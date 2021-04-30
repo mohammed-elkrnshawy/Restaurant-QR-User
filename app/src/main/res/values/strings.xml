@@ -39,4 +39,6 @@
     <string name="confirm">Confirm</string>
     <string name="reservation_success">Reservation Success</string>
     <string name="waiting_list">Waiting List</string>
+    <string name="subcategory">Subcategory</string>
+    <string name="products">Products</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,13 +83,20 @@ class RestaurantDetailsFragment : ParentFragment() {
 
     }
 
+    override fun handleToolbar() {
+        super.handleToolbar()
+        binding.imgBack.setOnClickListener {
+            getNavController()?.navigateUp()
+        }
+    }
+
     override fun onComponentsClick() {
         super.onComponentsClick()
 
         binding.menuReservation.setOnClickListener {
             if (SharedPrefManager.getLoginStatus(requireContext())!!){
                 val bundle = Bundle()
-                bundle.putSerializable("RestaurantObject",restaurantObject)
+                bundle.putSerializable("restaurantObject",restaurantObject)
                 getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_reservationNewFragment,bundle)
             }else{
                 SharedUtilsHelper.loginDialog(requireContext())
@@ -99,7 +107,7 @@ class RestaurantDetailsFragment : ParentFragment() {
         binding.menuWaiting.setOnClickListener {
             if (SharedPrefManager.getLoginStatus(requireContext())!!){
                 val bundle = Bundle()
-                bundle.putSerializable("RestaurantObject",restaurantObject)
+                bundle.putSerializable("restaurantObject",restaurantObject)
                 getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_waitingListFragment,bundle)
             }else{
                 SharedUtilsHelper.loginDialog(requireContext())

@@ -73,7 +73,7 @@ class MenuFragment : ParentFragment() {
 
     override fun handleToolbar() {
         super.handleToolbar()
-        binding.toolbar.stringTittle=context?.getString(R.string.phone)
+        binding.toolbar.stringTittle=context?.getString(R.string.products)
         binding.toolbar.imgBack.setOnClickListener {
             getNavController()?.navigateUp()
         }
