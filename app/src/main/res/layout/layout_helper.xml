@@ -11,8 +11,8 @@
         android:id="@+id/v_loading">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="10dp"
             android:layout_centerInParent="true">
             <pl.droidsonroids.gif.GifImageView

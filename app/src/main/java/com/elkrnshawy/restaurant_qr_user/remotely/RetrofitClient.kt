@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
     private var retrofit: Retrofit? = null
-    private val baseUrl = "https://restaurant.se01.tech/api/"
+    private val baseUrl = "https://restaurant-dashboard.se01.tech/api/"
 
 
     fun getClient(): Retrofit? {

@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
             app:destination="@id/restaurantDetailsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_scanFragment"
-            app:destination="@id/scanFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantDetailsFragment"
@@ -36,11 +33,6 @@
             android:id="@+id/action_restaurantDetailsFragment_to_waitingListFragment"
             app:destination="@id/waitingListFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/scanFragment"
-        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanFragment"
-        android:label="scan_fragment"
-        tools:layout="@layout/scan_fragment" />
     <fragment
         android:id="@+id/subcategoryFragment"
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage.SubcategoryFragment"
@@ -82,4 +74,9 @@
             android:name="restaurantObject"
             app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.accountPackage.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" /><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/>
 </navigation>

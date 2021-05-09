@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_background"/>
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:id="@+id/txtProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile"
+        android:textSize="14sp"
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorGray"
+        android:layout_below="@+id/txtProfile"
+        android:id="@+id/viewProfile"/>
+
+    <TextView
+        android:layout_below="@id/viewProfile"
+        android:id="@+id/txtReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/my_reservation"
+        android:textSize="14sp"
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorGray"
+        android:layout_below="@+id/txtReservation"/>
+
+</RelativeLayout>

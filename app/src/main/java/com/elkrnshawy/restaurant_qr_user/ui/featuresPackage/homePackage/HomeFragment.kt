@@ -18,6 +18,8 @@ import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
@@ -40,13 +42,13 @@ class HomeFragment : ParentFragment() {
         if (mainView==null){
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
             mainView = binding.root;
+            setupComponents(mainView)
         }
         return mainView;
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupComponents(mainView)
         handleToolbar()
         onComponentsClick()
     }
@@ -54,14 +56,10 @@ class HomeFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
         restaurantAdapter= RestaurantAdapter(arrayListOf()) { view, position ->
             val bundle = Bundle()
             bundle.putSerializable("RestaurantObject", restaurantAdapter.getItem(position))
-            getNavController()?.navigate(
-                R.id.action_homeFragment_to_restaurantDetailsFragment,
-                bundle
-            )
+            findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
         }
 
         binding.adapter=restaurantAdapter
@@ -72,7 +70,7 @@ class HomeFragment : ParentFragment() {
     override fun handleToolbar() {
         super.handleToolbar()
         binding.toolbar.imgMenu.setOnClickListener {
-
+            HomeActivity.open()
         }
     }
 
@@ -131,7 +129,7 @@ class HomeFragment : ParentFragment() {
        if (qrClicked){
            val bundle = Bundle()
            bundle.putSerializable("RestaurantObject", data)
-           getNavController()?.navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
+           findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
            qrClicked=false
        }
     }

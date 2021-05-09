@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.SubcategoryFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
@@ -37,14 +38,14 @@ class SubcategoryFragment : ParentFragment() {
                     false
             )
             mainView = binding.root;
+            getIntentData()
+            setupComponents(mainView)
         }
         return mainView;
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getIntentData()
-        setupComponents(mainView)
         handleToolbar()
     }
 
@@ -58,7 +59,7 @@ class SubcategoryFragment : ParentFragment() {
         categoryAdapter= CategoryAdapter(arrayListOf()) { view, position ->
             val bundle = Bundle()
             bundle.putSerializable("SubcategoryObject",categoryAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_subcategoryFragment_to_menuFragment, bundle)
+            findNavController().navigate(R.id.action_subcategoryFragment_to_menuFragment, bundle)
         }
         viewModel = ViewModelProvider(this).get(SubcategoryViewModel::class.java)
         binding.adapter=categoryAdapter
@@ -70,7 +71,7 @@ class SubcategoryFragment : ParentFragment() {
         super.handleToolbar()
         binding.toolbar.stringTittle=context?.resources?.getString(R.string.subcategory)
         binding.toolbar.imgBack.setOnClickListener {
-            getNavController()?.navigateUp()
+            findNavController().navigateUp()
         }
     }
 

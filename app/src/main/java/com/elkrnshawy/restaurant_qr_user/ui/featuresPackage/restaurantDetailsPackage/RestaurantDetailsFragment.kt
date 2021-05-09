@@ -20,7 +20,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class RestaurantDetailsFragment : ParentFragment() {
     private lateinit var binding: RestaurantDetailsFragmentBinding
-    private lateinit var viewModel: RestaurantDetailsViewModel
     private lateinit var pagerAdapter: SlidePagerAdapter
     private lateinit var titles: ArrayList<String>
     private var restaurantObject : RestaurantItem? =null
@@ -78,7 +77,6 @@ class RestaurantDetailsFragment : ParentFragment() {
             tab.text = titles[position]
         }.attach()
 
-        viewModel = ViewModelProvider(this).get(RestaurantDetailsViewModel::class.java)
         binding.restaurantObject=restaurantObject
 
     }

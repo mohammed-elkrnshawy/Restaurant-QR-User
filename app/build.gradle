@@ -135,4 +135,7 @@ dependencies {
 
     //Floating Menu
     implementation 'com.github.clans:fab:1.6.4'
+
+    //Navigation Drawer
+    implementation 'com.infideap.drawerbehavior:drawer-behavior:1.0.4'
 }

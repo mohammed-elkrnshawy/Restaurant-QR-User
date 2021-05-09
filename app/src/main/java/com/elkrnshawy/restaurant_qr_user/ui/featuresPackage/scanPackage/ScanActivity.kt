@@ -38,17 +38,17 @@ class ScanActivity : AppCompatActivity() {
         if (result != null) {
             // If QRCode has no data.
             if (result.contents == null) {
-                Toast.makeText(this, R.string.app_name, Toast.LENGTH_LONG).show()
+
             } else {
                 // If QRCode contains data.
                /* setupSettings()*/
                 val returnIntent = Intent()
                 returnIntent.putExtra("result", result.contents)
                 setResult(RESULT_OK, returnIntent)
-                finish()
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+        finish()
     }
 }

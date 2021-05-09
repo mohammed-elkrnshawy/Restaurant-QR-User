@@ -35,10 +35,12 @@
     <string name="loading">جاري التحميل</string>
     <string name="notes">الملاحظات</string>
     <string name="please_wait">من فضلك انتظر</string>
-    <string name="reservation_date">Reservation Date</string>
-    <string name="confirm">Confirm</string>
-    <string name="reservation_success">Reservation Success</string>
+    <string name="reservation_date">تاريخ الحجز</string>
+    <string name="confirm">تأكيد</string>
+    <string name="reservation_success">تم الحجز بنجاح</string>
     <string name="waiting_list">قائمة الانتظار</string>
-    <string name="subcategory">Subcategory</string>
-    <string name="products">Products</string>
+    <string name="subcategory">الاقسام الفرعية</string>
+    <string name="products">المنتجات</string>
+    <string name="my_reservation">حجوزاتى</string>
+    <string name="profile">الصفحة الشخصية</string>
 </resources>

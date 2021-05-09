@@ -41,15 +41,15 @@ class MenuFragment : ParentFragment() {
                     container,
                     false
             )
-            mainView = binding.root;
+            mainView = binding.root
+            getIntentData()
+            setupComponents(mainView)
         }
         return mainView;
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getIntentData()
-        setupComponents(mainView)
         handleToolbar()
     }
 
@@ -61,9 +61,7 @@ class MenuFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         productAdapter= ProductAdapter(arrayListOf()) { view, position ->
-            /*val bundle = Bundle()
-            bundle.putSerializable("SubcategoryObject",categoryAdapter.getItem(position))
-            getNavController()?.navigate(R.id.action_subcategoryFragment_to_menuFragment, bundle)*/
+
         }
         viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
         binding.adapter=productAdapter
@@ -75,7 +73,7 @@ class MenuFragment : ParentFragment() {
         super.handleToolbar()
         binding.toolbar.stringTittle=context?.getString(R.string.products)
         binding.toolbar.imgBack.setOnClickListener {
-            getNavController()?.navigateUp()
+            findNavController().navigateUp()
         }
     }
 
