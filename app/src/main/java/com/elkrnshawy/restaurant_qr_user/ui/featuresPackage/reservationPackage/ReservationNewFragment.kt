@@ -104,7 +104,8 @@ class ReservationNewFragment : ParentFragment() {
         }
 
         viewModel.callReservation(restaurantObject?.getId()!!,userObject.getToken().toString(),binding.edtUsername.text.toString(),
-        binding.edtPhone.text.toString(),binding.edtNotes.text.toString(),binding.edtPeopleNumber.text.toString().toInt())
+        binding.edtPhone.text.toString(),binding.edtNotes.text.toString(),binding.edtPeopleNumber.text.toString().toInt(),
+        binding.txtDate.text.toString().split(' ')[0],binding.txtDate.text.toString().split(' ')[1])
     }
 
     private fun datePicker() {
@@ -128,12 +129,13 @@ class ReservationNewFragment : ParentFragment() {
         viewModel.getDataReservation().observe(viewLifecycleOwner, Observer { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
-                    showMainLoading()
+                    showSubLoading()
                 }
                 Status.Failure -> {
                     handleErrorMsg(dataResponse.error)
                 }
                 Status.Success -> {
+                    handleErrorMsg(null)
                     Toast.makeText(requireContext(),resources.getString(R.string.reservation_success),Toast.LENGTH_SHORT).show()
                     getNavController()?.navigateUp()
                 }

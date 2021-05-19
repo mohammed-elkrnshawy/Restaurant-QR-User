@@ -66,7 +66,13 @@ class WaitingListFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         viewModel = ViewModelProvider(this).get(WaitingListViewModel::class.java)
-        viewModel.callWaitingCount()
+
+        if (restaurantObject ==null){
+            Toast.makeText(requireContext(),"HERE",Toast.LENGTH_SHORT).show()
+        }else{
+            viewModel.callWaitingCount(userObject?.getToken().toString(),restaurantObject?.getId()!!)
+        }
+
         observeData()
     }
 

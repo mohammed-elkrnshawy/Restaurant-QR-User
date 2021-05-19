@@ -13,8 +13,9 @@ interface AuthService {
     @Headers("Accept: application/json")
     @POST("auth/register")
     fun registerUser(
-        @Header("X-Localization") localization: String?,
+        @Header("Content-Language") localization: String?,
         @Header("Accept") accept: String?,
+        @Query("device") device: String?,
         @Query("name") name: String?,
         @Query("email") email: String?,
         @Query("phone") phone: String?,
@@ -26,8 +27,9 @@ interface AuthService {
     @Headers("Accept: application/json")
     @POST("auth/login")
     fun loginUser(
-        @Header("X-Localization") localization: String,
+        @Header("Content-Language") localization: String,
         @Header("Accept") accept: String,
+        @Query("device") device: String,
         @Query("phone") phone: String,
         @Query("password") password: String,
         @Query("token") token: String

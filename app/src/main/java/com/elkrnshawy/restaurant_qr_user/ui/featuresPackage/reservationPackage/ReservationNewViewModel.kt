@@ -18,10 +18,11 @@ class ReservationNewViewModel : ViewModel() {
         return dataObserveReservation
     }
 
-    fun callReservation(restaurant_id: Int, token: String, username: String, phone: String,notes: String, count: Int) {
+    fun callReservation(restaurant_id: Int, token: String, username: String, phone: String,notes: String, count: Int,
+                        date: String ,time: String) {
         dataObserveReservation.postLoading()
         ApiUtils.getReservationService()?.reservation(ConstantsHelper.BEARER_TOKEN+token,
-                ConstantsHelper.Localization, ConstantsHelper.ACCEPT,restaurant_id,username,phone,notes,count)?.clone()?.
+                ConstantsHelper.Localization, ConstantsHelper.ACCEPT,restaurant_id,username,phone,notes,count,date,time)?.clone()?.
         enqueue(object : Callback<ReservationResponse?> {
             override fun onResponse(call: Call<ReservationResponse?>, response: Response<ReservationResponse?>) {
                 if (response.isSuccessful){

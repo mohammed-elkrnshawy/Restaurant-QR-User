@@ -18,9 +18,9 @@ class WaitingListViewModel : ViewModel() {
         return dataObserveWaitingCount
     }
 
-    fun callWaitingCount() {
+    fun callWaitingCount(token : String, restaurantID: Int) {
         dataObserveWaitingCount.postLoading()
-        ApiUtils.getReservationService()?.waitingCount(ConstantsHelper.Localization, ConstantsHelper.ACCEPT)?.clone()?.
+        ApiUtils.getReservationService()?.waitingCount(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization, ConstantsHelper.ACCEPT,restaurantID)?.clone()?.
         enqueue(object : Callback<WaitingCountResponse?> {
             override fun onResponse(call: Call<WaitingCountResponse?>, response: Response<WaitingCountResponse?>) {
                 if (response.isSuccessful){

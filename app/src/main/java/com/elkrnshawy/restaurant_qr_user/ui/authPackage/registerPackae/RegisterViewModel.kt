@@ -19,8 +19,8 @@ class RegisterViewModel : ViewModel() {
 
     private fun callRegister(username: String, email: String, phone: String, password: String, token: String) {
         dataObserveRegister.postLoading()
-        ApiUtils.getUserService()?.registerUser(ConstantsHelper.Localization, ConstantsHelper.ACCEPT,username,email,
-        phone,password,"token")?.clone()?.enqueue(object : Callback<AuthResponse?> {
+        ApiUtils.getUserService()?.registerUser(ConstantsHelper.Localization, ConstantsHelper.ACCEPT,ConstantsHelper.Device,
+                username,email, phone,password,"token")?.clone()?.enqueue(object : Callback<AuthResponse?> {
             override fun onResponse(call: Call<AuthResponse?>, response: Response<AuthResponse?>) {
                 if (response.isSuccessful){
                     if (response.body()?.getStatus()!!){

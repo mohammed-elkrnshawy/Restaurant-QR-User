@@ -20,8 +20,8 @@ class LoginViewModel : ViewModel() {
 
     private fun callLogin(phone: String, password: String, token: String) {
         dataObserveLogin.postLoading()
-        ApiUtils.getUserService()?.loginUser(ConstantsHelper.Localization, ConstantsHelper.ACCEPT,phone,password,token)?.
-        clone()?.enqueue(object : Callback<AuthResponse?> {
+        ApiUtils.getUserService()?.loginUser(ConstantsHelper.Localization, ConstantsHelper.ACCEPT,ConstantsHelper.Device,
+                phone,password,token)?.clone()?.enqueue(object : Callback<AuthResponse?> {
             override fun onResponse(call: Call<AuthResponse?>, response: Response<AuthResponse?>) {
                 if (response.isSuccessful){
                     if (response.body()?.getStatus()!!){

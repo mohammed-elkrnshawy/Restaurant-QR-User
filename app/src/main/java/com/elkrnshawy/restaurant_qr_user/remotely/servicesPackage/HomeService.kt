@@ -13,7 +13,7 @@ interface HomeService {
     @Headers("Accept: application/json")
     @GET("restaurants")
     fun restaurant(
-            @Header("X-Localization") localization: String,
+            @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
             @Query("page") page: Int
     ): Call<RestaurantResponse>?
@@ -21,7 +21,7 @@ interface HomeService {
     @Headers("Accept: application/json")
     @GET("getCode/{code}")
     fun restaurantQR(
-            @Header("X-Localization") localization: String,
+            @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
             @Path("code") code: String
     ): Call<RestaurantCodeResponse>?
@@ -29,7 +29,7 @@ interface HomeService {
     @Headers("Accept: application/json")
     @GET("categories/{categoryID}")
     fun subcategory(
-            @Header("X-Localization") localization: String,
+            @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
             @Path("categoryID") categoryID: Int,
             @Query("page") page: Int
@@ -38,7 +38,7 @@ interface HomeService {
     @Headers("Accept: application/json")
     @GET("products/{subcategoryID}")
     fun product(
-            @Header("X-Localization") localization: String,
+            @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
             @Path("subcategoryID") subcategoryID: Int,
             @Query("page") page: Int
