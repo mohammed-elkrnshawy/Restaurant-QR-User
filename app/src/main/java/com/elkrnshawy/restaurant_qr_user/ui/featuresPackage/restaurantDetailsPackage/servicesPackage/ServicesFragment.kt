@@ -13,12 +13,14 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentCategoryBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentServicesBinding
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
+import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.models.servicePackage.ServiceItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage.SubcategoryViewModel
@@ -35,6 +37,7 @@ class ServicesFragment : ParentFragment() {
     private lateinit var viewModel: ServicesViewModel
     private var restaurantObject : RestaurantItem? =null
     private var mainView: View? =null
+    private var tableNumber : Int =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +67,7 @@ class ServicesFragment : ParentFragment() {
         super.getIntentData()
         if (arguments != null) {
             restaurantObject= arguments?.getSerializable("RestaurantObject") as RestaurantItem?
+            tableNumber= arguments?.getInt("TableNumber",0)!!
         }
     }
 
@@ -72,7 +76,11 @@ class ServicesFragment : ParentFragment() {
         viewModel = ViewModelProvider(this).get(ServicesViewModel::class.java)
 
         serviceAdapter= ServiceAdapter(arrayListOf()) { view, position ->
-           showDialog(serviceAdapter.getItem(position))
+           if (tableNumber!=0){
+               showDialog(serviceAdapter.getItem(position))
+           }else{
+               Toast.makeText(requireContext(),"",Toast.LENGTH_SHORT).show()
+           }
         }
 
         binding.adapter=serviceAdapter
@@ -95,14 +103,34 @@ class ServicesFragment : ParentFragment() {
         btnConfirm.setOnClickListener { view ->
             dialog.dismiss()
             viewModel.callOrderService(SharedPrefManager.getUserData(requireContext())?.getToken().toString(),
-                restaurantObject?.getId()!!,1,serviceItem?.getId()!!)
+                restaurantObject?.getId()!!,tableNumber,serviceItem?.getId()!!)
         }
 
         btnCancel.setOnClickListener { view -> dialog.dismiss() }
         dialog.show()
     }
 
-    private fun observeData(){
+    private fun observeData() {
+        viewModel.getDataOrderService().observe(viewLifecycleOwner,  { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showSubLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuceess(dataResponse.data?.getData())
+                    handleErrorMsg(null)
+                }
+                Status.ResponseArrived -> {
 
+                }
+            }
+        })
+    }
+
+    private fun onSuceess(s: String?) {
+        Toast.makeText(requireContext(),s,Toast.LENGTH_SHORT).show()
     }
 }

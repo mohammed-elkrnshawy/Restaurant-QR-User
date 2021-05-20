@@ -16,7 +16,7 @@ interface ReservationService {
             @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
             @Field("restaurant_id") restaurant_id: Int,
-            @Field("user_id") user_id: Int,
+            @Field("table_id") table_id: Int,
             @Field("service_id") service_id: Int
     ): Call<StringResponse>?
 

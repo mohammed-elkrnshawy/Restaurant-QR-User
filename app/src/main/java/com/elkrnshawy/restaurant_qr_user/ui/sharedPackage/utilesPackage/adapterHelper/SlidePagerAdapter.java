@@ -14,12 +14,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class SlidePagerAdapter extends FragmentStateAdapter {
     private RestaurantItem item;
+    private int tableNumber;
     private ServicesFragment servicesFragment;
     private CategoryFragment categoryFragment;
 
-    public SlidePagerAdapter(FragmentActivity fa, RestaurantItem item) {
+    public SlidePagerAdapter(FragmentActivity fa, RestaurantItem item, int tableNumber) {
         super(fa);
         this.item=item;
+        this.tableNumber=tableNumber;
     }
 
     @NotNull
@@ -27,6 +29,7 @@ public class SlidePagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         Bundle args = new Bundle();
         args.putSerializable("RestaurantObject", item);
+        args.putSerializable("TableNumber", tableNumber);
 
         if (position==1){
             if (servicesFragment==null){

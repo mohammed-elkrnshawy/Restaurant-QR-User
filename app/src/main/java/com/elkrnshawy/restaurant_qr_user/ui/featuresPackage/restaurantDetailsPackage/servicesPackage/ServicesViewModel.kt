@@ -18,10 +18,10 @@ class ServicesViewModel : ViewModel() {
         return dataObserveOrderService
     }
 
-    fun callOrderService(token: String, restaurantID: Int, userID: Int, serviceID: Int) {
+    fun callOrderService(token: String, restaurantID: Int, table_id: Int, serviceID: Int) {
         dataObserveOrderService.postLoading()
         ApiUtils.getReservationService()?.orderService(ConstantsHelper.BEARER_TOKEN+token, ConstantsHelper.Localization,
-            ConstantsHelper.ACCEPT,restaurantID,userID,serviceID)?.enqueue(object : Callback<StringResponse?> {
+            ConstantsHelper.ACCEPT,restaurantID,table_id,serviceID)?.enqueue(object : Callback<StringResponse?> {
             override fun onResponse(call: Call<StringResponse?>, response: Response<StringResponse?>) {
                 if (response.isSuccessful){
                     if (response.body()?.getStatus()!!){

@@ -24,6 +24,7 @@ class RestaurantDetailsFragment : ParentFragment() {
     private lateinit var titles: ArrayList<String>
     private var restaurantObject : RestaurantItem? =null
     private var mainView: View? =null
+    private var tableNumber : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,7 @@ class RestaurantDetailsFragment : ParentFragment() {
     override fun getIntentData() {
         super.getIntentData()
         restaurantObject= RestaurantDetailsFragmentArgs.fromBundle(requireArguments()).restaurantObject
+        tableNumber=RestaurantDetailsFragmentArgs.fromBundle(requireArguments()).tableNumber
     }
 
     override fun setupComponents(view: View?) {
@@ -68,7 +70,7 @@ class RestaurantDetailsFragment : ParentFragment() {
         titles.add(getString(R.string.details))
         titles.add(getString(R.string.services))
 
-        pagerAdapter = SlidePagerAdapter(requireActivity(),restaurantObject)
+        pagerAdapter = SlidePagerAdapter(requireActivity(),restaurantObject,tableNumber)
         binding.viewPager.adapter = pagerAdapter
 
         TabLayoutMediator(

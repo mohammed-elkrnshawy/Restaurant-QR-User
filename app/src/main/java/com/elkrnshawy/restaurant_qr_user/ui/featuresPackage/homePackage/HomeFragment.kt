@@ -131,7 +131,7 @@ class HomeFragment : ParentFragment() {
        if (qrClicked){
            val bundle = Bundle()
            bundle.putSerializable("RestaurantObject", data?.getRestaurant())
-           bundle.putSerializable("TableNumber", data?.getNumber())
+           bundle.putSerializable("TableNumber", data?.getId())
            findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
            qrClicked=false
        }
