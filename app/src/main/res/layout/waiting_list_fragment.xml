@@ -8,6 +8,7 @@
         <variable
             name="vmItem"
             type="com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountData" />
+
     </data>
 
     <RelativeLayout
@@ -41,6 +42,7 @@
                 android:textColor="@color/colorBlack"/>
 
             <TextView
+                android:id="@+id/txtCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{DataBindingUtilKt.convertString(context,vmItem.watinglistCount)}"

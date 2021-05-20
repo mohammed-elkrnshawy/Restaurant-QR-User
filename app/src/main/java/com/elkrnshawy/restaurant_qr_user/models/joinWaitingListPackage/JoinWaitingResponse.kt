@@ -1,11 +1,10 @@
-package com.elkrnshawy.restaurant_qr_user.models.restaurantPackage
+package com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage
 
-import com.elkrnshawy.restaurant_qr_user.models.UserData
+
 import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 
-class RestaurantCodeResponse {
+class JoinWaitingResponse {
     @SerializedName("status")
     @Expose
     private var status: Boolean? = null
@@ -16,7 +15,7 @@ class RestaurantCodeResponse {
 
     @SerializedName("data")
     @Expose
-    private var data: RestaurantCodeData? = null
+    private var data: JoinWaitingData? = null
 
     fun getStatus(): Boolean? {
         return status
@@ -34,11 +33,11 @@ class RestaurantCodeResponse {
         this.message = message
     }
 
-    fun getData(): RestaurantCodeData? {
+    fun getData(): JoinWaitingData? {
         return data
     }
 
-    fun setData(data: RestaurantCodeData?) {
+    fun setData(data: JoinWaitingData?) {
         this.data = data
     }
 }

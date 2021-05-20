@@ -32,6 +32,10 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_waitingListFragment"
             app:destination="@id/waitingListFragment" />
+        <argument
+            android:name="TableNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/subcategoryFragment"

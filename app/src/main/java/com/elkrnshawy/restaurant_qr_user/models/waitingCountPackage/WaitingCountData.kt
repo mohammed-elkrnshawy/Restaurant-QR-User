@@ -8,6 +8,14 @@ class WaitingCountData {
     @Expose
     private var watinglistCount: Int? = null
 
+    @SerializedName("exist")
+    @Expose
+    private var exist: Boolean? = null
+
+    @SerializedName("watinglistNumber")
+    @Expose
+    private var watinglistNumber: Int? = null
+
     fun getWatinglistCount(): Int? {
         return watinglistCount
     }
@@ -15,4 +23,21 @@ class WaitingCountData {
     fun setWatinglistCount(watinglistCount: Int?) {
         this.watinglistCount = watinglistCount
     }
+
+    fun getExist(): Boolean? {
+        return exist
+    }
+
+    fun setExist(exist: Boolean?) {
+        this.exist = exist
+    }
+
+    fun getWatinglistNumber(): Int? {
+        return watinglistNumber
+    }
+
+    fun setWatinglistNumber(watinglistNumber: Int?) {
+        this.watinglistNumber = watinglistNumber
+    }
+
 }

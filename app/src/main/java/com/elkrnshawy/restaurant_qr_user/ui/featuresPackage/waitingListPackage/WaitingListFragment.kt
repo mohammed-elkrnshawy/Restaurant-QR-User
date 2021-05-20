@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.IntegerRes
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.elkrnshawy.restaurant_qr_user.R
@@ -14,7 +15,9 @@ import com.elkrnshawy.restaurant_qr_user.databinding.ReservationNewFragmentBindi
 import com.elkrnshawy.restaurant_qr_user.databinding.WaitingListFragmentBinding
 import com.elkrnshawy.restaurant_qr_user.models.UserData
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
+import com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage.JoinWaitingData
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
+import com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountData
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationNewFragmentArgs
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationNewViewModel
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
@@ -27,6 +30,7 @@ class WaitingListFragment : ParentFragment() {
     private var mainView: View? =null
     private var restaurantObject: RestaurantItem? = null
     private lateinit var userObject: UserData
+    private var joinID : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,11 +71,7 @@ class WaitingListFragment : ParentFragment() {
         super.setupComponents(view)
         viewModel = ViewModelProvider(this).get(WaitingListViewModel::class.java)
 
-        if (restaurantObject ==null){
-            Toast.makeText(requireContext(),"HERE",Toast.LENGTH_SHORT).show()
-        }else{
-            viewModel.callWaitingCount(userObject?.getToken().toString(),restaurantObject?.getId()!!)
-        }
+        viewModel.callWaitingCount(userObject?.getToken().toString(),restaurantObject?.getId()!!)
 
         observeData()
     }
@@ -88,7 +88,11 @@ class WaitingListFragment : ParentFragment() {
         super.onComponentsClick()
 
         binding.btnJoin.setOnClickListener {
-
+            if (binding.btnJoin.text.equals(resources.getString(R.string.join_waiting_list))){
+                viewModel.callJoinWaiting(userObject?.getToken().toString(),restaurantObject?.getId()!!)
+            }else{
+                viewModel.callRemoveWaiting(userObject?.getToken().toString(),joinID)
+            }
         }
     }
 
@@ -102,7 +106,7 @@ class WaitingListFragment : ParentFragment() {
                     handleErrorMsg(dataResponse.error)
                 }
                 Status.Success -> {
-                    binding.vmItem=dataResponse.data?.getData()
+                    onSuccessCount(dataResponse.data?.getData())
                     handleErrorMsg(null)
                 }
                 Status.ResponseArrived -> {
@@ -110,5 +114,65 @@ class WaitingListFragment : ParentFragment() {
                 }
             }
         })
+
+        viewModel.getDataRemoveWaiting().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showMainLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuccessRemove()
+                    Toast.makeText(requireContext(),dataResponse.data?.getData().toString(),Toast.LENGTH_SHORT).show()
+                    handleErrorMsg(null)
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+
+        viewModel.getDataJoinWaiting().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    showMainLoading()
+                }
+                Status.Failure -> {
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    onSuccessJoin(dataResponse.data?.getData())
+                    handleErrorMsg(null)
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+    }
+
+    private fun onSuccessCount(data: WaitingCountData?) {
+        binding.vmItem=data
+        if (data?.getExist()!!){
+            joinID=data?.getWatinglistNumber()!!
+            binding.btnJoin.text=resources.getString(R.string.remove_from_waiting_list)
+            binding.btnJoin.setTextColor(resources.getColor(R.color.colorRed))
+        }
+    }
+
+    private fun onSuccessJoin(data: JoinWaitingData?) {
+        joinID=data?.getNumber()!!
+        binding.txtCount.text=data?.getWatinglistCount().toString()
+        binding.btnJoin.text=resources.getString(R.string.remove_from_waiting_list)
+        binding.btnJoin.setTextColor(resources.getColor(R.color.colorRed))
+    }
+
+    private fun onSuccessRemove() {
+        joinID=0
+        binding.txtCount.text= ((binding.txtCount.text.toString().toInt())-1).toString()
+        binding.btnJoin.text=resources.getString(R.string.join_waiting_list)
+        binding.btnJoin.setTextColor(resources.getColor(R.color.colorPrimary))
     }
 }

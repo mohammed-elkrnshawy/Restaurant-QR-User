@@ -44,4 +44,5 @@
     <string name="my_reservation">حجوزاتى</string>
     <string name="profile">الصفحة الشخصية</string>
     <string name="are_you_sure">تأكيد طلب الخدمة</string>
+    <string name="remove_from_waiting_list">Remove From Waiting List</string>
 </resources>

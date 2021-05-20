@@ -17,6 +17,7 @@ import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentHomeBinding
 import com.elkrnshawy.restaurant_qr_user.models.Paginate
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
+import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCodeData
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
@@ -126,10 +127,11 @@ class HomeFragment : ParentFragment() {
         })
     }
 
-    private fun onSuccessQR(data: RestaurantItem?) {
+    private fun onSuccessQR(data: RestaurantCodeData?) {
        if (qrClicked){
            val bundle = Bundle()
-           bundle.putSerializable("RestaurantObject", data)
+           bundle.putSerializable("RestaurantObject", data?.getRestaurant())
+           bundle.putSerializable("TableNumber", data?.getNumber())
            findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
            qrClicked=false
        }

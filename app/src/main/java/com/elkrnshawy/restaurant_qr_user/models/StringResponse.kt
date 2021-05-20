@@ -17,7 +17,7 @@ class StringResponse {
 
     @SerializedName("data")
     @Expose
-    private var data: Objects? = null
+    private var data: String? = null
 
     fun getStatus(): Boolean? {
         return status
@@ -35,11 +35,11 @@ class StringResponse {
         this.message = message
     }
 
-    fun getData(): Objects? {
+    fun getData(): String? {
         return data
     }
 
-    fun setData(data: Objects?) {
+    fun setData(data: String?) {
         this.data = data
     }
 }

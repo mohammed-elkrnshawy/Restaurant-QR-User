@@ -1,8 +1,10 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.waitingListPackage
 
 import androidx.lifecycle.ViewModel
+import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.MutableResultWrapper
+import com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage.JoinWaitingResponse
 import com.elkrnshawy.restaurant_qr_user.models.reservationPackage.ReservationResponse
 import com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountResponse
 import com.elkrnshawy.restaurant_qr_user.remotely.ApiUtils
@@ -35,7 +37,63 @@ class WaitingListViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<WaitingCountResponse?>, t: Throwable) {
-                dataObserveWaitingCount.postError(GenericError(t.localizedMessage,null,call.execute().code(),true))
+                dataObserveWaitingCount.postError(GenericError(t.message,null,call.execute().code(),true))
+            }
+        })
+    }
+
+    private val dataObserveJoinWaiting: MutableResultWrapper<JoinWaitingResponse> = MutableResultWrapper()
+
+    fun getDataJoinWaiting(): MutableResultWrapper<JoinWaitingResponse> {
+        return dataObserveJoinWaiting
+    }
+
+    fun callJoinWaiting(token : String, restaurantID: Int) {
+        dataObserveJoinWaiting.postLoading()
+        ApiUtils.getReservationService()?.joinWaiting(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization, ConstantsHelper.ACCEPT,restaurantID)?.clone()?.
+        enqueue(object : Callback<JoinWaitingResponse?> {
+            override fun onResponse(call: Call<JoinWaitingResponse?>, response: Response<JoinWaitingResponse?>) {
+                if (response.isSuccessful){
+                    if (response.body()?.getStatus()!!){
+                        dataObserveJoinWaiting.postSuccess(response.body()!!)
+                    }else{
+                        dataObserveJoinWaiting.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                    }
+                }else{
+                    dataObserveJoinWaiting.postError(GenericError(response.message(),null,response.code(),true))
+                }
+            }
+
+            override fun onFailure(call: Call<JoinWaitingResponse?>, t: Throwable) {
+                dataObserveJoinWaiting.postError(GenericError(t.message,null,call.execute().code(),true))
+            }
+        })
+    }
+
+    private val dataObserveRemoveWaiting: MutableResultWrapper<StringResponse> = MutableResultWrapper()
+
+    fun getDataRemoveWaiting(): MutableResultWrapper<StringResponse> {
+        return dataObserveRemoveWaiting
+    }
+
+    fun callRemoveWaiting(token : String, waitingNumber: Int) {
+        dataObserveRemoveWaiting.postLoading()
+        ApiUtils.getReservationService()?.removeWaiting(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization, ConstantsHelper.ACCEPT,waitingNumber)?.clone()?.
+        enqueue(object : Callback<StringResponse?> {
+            override fun onResponse(call: Call<StringResponse?>, response: Response<StringResponse?>) {
+                if (response.isSuccessful){
+                    if (response.body()?.getStatus()!!){
+                        dataObserveRemoveWaiting.postSuccess(response.body()!!)
+                    }else{
+                        dataObserveRemoveWaiting.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                    }
+                }else{
+                    dataObserveRemoveWaiting.postError(GenericError(response.message(),null,response.code(),true))
+                }
+            }
+
+            override fun onFailure(call: Call<StringResponse?>, t: Throwable) {
+                dataObserveRemoveWaiting.postError(GenericError(t.message,null,call.execute().code(),true))
             }
         })
     }

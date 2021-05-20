@@ -1,6 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage
 
 import com.elkrnshawy.restaurant_qr_user.models.StringResponse
+import com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage.JoinWaitingResponse
 import com.elkrnshawy.restaurant_qr_user.models.reservationPackage.ReservationResponse
 import com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountResponse
 import retrofit2.Call
@@ -42,5 +43,22 @@ interface ReservationService {
             @Header("Accept") accept: String,
             @Path("id") restaurant_id: Int
     ): Call<WaitingCountResponse>?
+
+    @GET("remove_waitinglist/{id}")
+    fun removeWaiting(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String,
+            @Path("id") waitingListNumber: Int
+    ): Call<StringResponse>?
+
+    @FormUrlEncoded
+    @POST("join_waitinglist")
+    fun joinWaiting(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String,
+            @Field("restaurant_id") restaurant_id: Int
+    ): Call<JoinWaitingResponse>?
 
 }
