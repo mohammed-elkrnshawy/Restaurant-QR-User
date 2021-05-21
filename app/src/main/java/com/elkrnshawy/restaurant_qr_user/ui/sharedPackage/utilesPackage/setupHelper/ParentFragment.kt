@@ -62,8 +62,9 @@ open class ParentFragment : Fragment(), setupView {
             navController = Navigation.findNavController(it)
         }catch (e: java.lang.Exception){}
             v_loading = view.findViewById(R.id.v_loading)
-           /* progress_bar = view.findViewById(R.id.progress_bar)
             vEmpty = view.findViewById(R.id.v_empty)
+           /* progress_bar = view.findViewById(R.id.progress_bar)
+
             v_serverError = view.findViewById(R.id.v_serverError)
             v_noInternet = view.findViewById(R.id.v_noInternet)
             try {

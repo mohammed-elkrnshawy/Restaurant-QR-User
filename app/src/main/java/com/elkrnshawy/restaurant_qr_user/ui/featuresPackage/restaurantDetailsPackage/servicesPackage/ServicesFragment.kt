@@ -1,12 +1,9 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.servicesPackage
 
-import android.app.Activity
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,17 +13,12 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
-import com.elkrnshawy.restaurant_qr_user.databinding.FragmentCategoryBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentServicesBinding
-import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.Status
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.models.servicePackage.ServiceItem
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.menuPackage.subcategoryPackage.SubcategoryViewModel
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryAdapter
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.MainActivity
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.ConstantsHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 import java.util.*
@@ -67,7 +59,7 @@ class ServicesFragment : ParentFragment() {
         super.getIntentData()
         if (arguments != null) {
             restaurantObject= arguments?.getSerializable("RestaurantObject") as RestaurantItem?
-            tableNumber= arguments?.getInt("TableNumber",0)!!
+            tableNumber= arguments?.getInt("TableNumber", 0)!!
         }
     }
 
@@ -79,7 +71,8 @@ class ServicesFragment : ParentFragment() {
            if (tableNumber!=0){
                showDialog(serviceAdapter.getItem(position))
            }else{
-               Toast.makeText(requireContext(),"",Toast.LENGTH_SHORT).show()
+               findNavController().previousBackStackEntry!!.savedStateHandle.set<Boolean>("isScanQR", true)
+               findNavController().navigateUp()
            }
         }
 
@@ -103,7 +96,7 @@ class ServicesFragment : ParentFragment() {
         btnConfirm.setOnClickListener { view ->
             dialog.dismiss()
             viewModel.callOrderService(SharedPrefManager.getUserData(requireContext())?.getToken().toString(),
-                restaurantObject?.getId()!!,tableNumber,serviceItem?.getId()!!)
+                    restaurantObject?.getId()!!, tableNumber, serviceItem?.getId()!!)
         }
 
         btnCancel.setOnClickListener { view -> dialog.dismiss() }
@@ -111,7 +104,7 @@ class ServicesFragment : ParentFragment() {
     }
 
     private fun observeData() {
-        viewModel.getDataOrderService().observe(viewLifecycleOwner,  { dataResponse ->
+        viewModel.getDataOrderService().observe(viewLifecycleOwner, { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
                     showSubLoading()
@@ -131,6 +124,6 @@ class ServicesFragment : ParentFragment() {
     }
 
     private fun onSuceess(s: String?) {
-        Toast.makeText(requireContext(),s,Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
     }
 }

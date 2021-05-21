@@ -100,6 +100,7 @@ class SubcategoryFragment : ParentFragment() {
 
     private fun onSuccess(items: List<CategoryItem>?, paginate: Paginate?) {
         if (paginate?.current_page==1){
+            isEmptyList(items)
             categoryAdapter.setItems(items as List<CategoryItem>)
         }
     }

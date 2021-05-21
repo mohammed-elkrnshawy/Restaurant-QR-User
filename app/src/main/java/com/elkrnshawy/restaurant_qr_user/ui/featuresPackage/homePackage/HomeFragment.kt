@@ -7,11 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
+import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentHomeBinding
@@ -21,7 +18,6 @@ import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCode
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
@@ -37,9 +33,9 @@ class HomeFragment : ParentFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         if (mainView==null){
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
@@ -51,6 +47,7 @@ class HomeFragment : ParentFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        onBackResult()
         handleToolbar()
         onComponentsClick()
         observeDataQR()
@@ -82,7 +79,7 @@ class HomeFragment : ParentFragment() {
 
         binding.cardQR.setOnClickListener {
             qrClicked=true
-            startActivityForResult(Intent(requireContext(), ScanActivity::class.java),200)
+            startActivityForResult(Intent(requireContext(), ScanActivity::class.java), 200)
         }
     }
 
@@ -97,8 +94,8 @@ class HomeFragment : ParentFragment() {
                 }
                 Status.Success -> {
                     onSuccess(
-                        dataResponse.data?.getData()?.getItems(),
-                        dataResponse.data?.getData()?.getPaginate()
+                            dataResponse.data?.getData()?.getItems(),
+                            dataResponse.data?.getData()?.getPaginate()
                     )
                     handleErrorMsg(null)
                 }
@@ -130,7 +127,7 @@ class HomeFragment : ParentFragment() {
     }
 
     private fun onSuccessQR(data: RestaurantCodeData?) {
-        Log.e("PRINT_DATA","READ_QR_OK")
+        Log.e("PRINT_DATA", "READ_QR_OK")
        if (qrClicked){
            val bundle = Bundle()
            bundle.putSerializable("RestaurantObject", data?.getRestaurant())
@@ -142,6 +139,7 @@ class HomeFragment : ParentFragment() {
 
     private fun onSuccess(items: List<RestaurantItem?>?, paginate: Paginate?) {
         if (paginate?.current_page==1){
+            isEmptyList(items)
             restaurantAdapter.setItems(items as List<RestaurantItem>)
         }
     }
@@ -158,5 +156,31 @@ class HomeFragment : ParentFragment() {
                 //Write your code if there's no result
             }
         }
+    }
+
+    private fun onBackResult(){
+        val navBackStackEntry = findNavController().currentBackStackEntry
+        val observer = LifecycleEventObserver { source, event ->
+            if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry!!.savedStateHandle.contains("isScanQR")) {
+                val result = navBackStackEntry!!.savedStateHandle.get<Boolean>("isScanQR")!!
+                if (result) {
+                    /*qrClicked=true
+                    startActivityForResult(Intent(requireContext(), ScanActivity::class.java), 200)*/
+                    binding.cardQR.callOnClick()
+                }
+            }
+        }
+        navBackStackEntry!!.lifecycle.addObserver(observer)
+
+        // As addObserver() does not automatically remove the observer, we
+        // call removeObserver() manually when the view lifecycle is destroyed
+
+        // As addObserver() does not automatically remove the observer, we
+        // call removeObserver() manually when the view lifecycle is destroyed
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { source, event ->
+            if (event == Lifecycle.Event.ON_DESTROY || event == Lifecycle.Event.ON_PAUSE) {
+                navBackStackEntry!!.lifecycle.removeObserver(observer)
+            }
+        })
     }
 }

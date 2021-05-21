@@ -102,6 +102,7 @@ class MenuFragment : ParentFragment() {
 
     private fun onSuccess(items: List<ProductItem?>?, paginate: Paginate?) {
         if (paginate?.current_page==1){
+            isEmptyList(items)
             productAdapter.setItems(items as List<ProductItem>)
         }
     }
