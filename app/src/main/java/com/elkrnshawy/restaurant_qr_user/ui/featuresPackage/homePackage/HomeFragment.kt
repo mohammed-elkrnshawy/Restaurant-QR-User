@@ -53,6 +53,7 @@ class HomeFragment : ParentFragment() {
         super.onViewCreated(view, savedInstanceState)
         handleToolbar()
         onComponentsClick()
+        observeDataQR()
     }
 
     override fun setupComponents(view: View?) {
@@ -106,8 +107,9 @@ class HomeFragment : ParentFragment() {
                 }
             }
         })
+    }
 
-
+    private fun observeDataQR(){
         viewModel.getDataRestaurantQR().observe(viewLifecycleOwner, Observer { dataResponse ->
             when (dataResponse!!.status) {
                 Status.Loading -> {
@@ -128,6 +130,7 @@ class HomeFragment : ParentFragment() {
     }
 
     private fun onSuccessQR(data: RestaurantCodeData?) {
+        Log.e("PRINT_DATA","READ_QR_OK")
        if (qrClicked){
            val bundle = Bundle()
            bundle.putSerializable("RestaurantObject", data?.getRestaurant())
@@ -148,6 +151,7 @@ class HomeFragment : ParentFragment() {
         if (requestCode === 200) {
             if (resultCode === Activity.RESULT_OK) {
                 val result: String = data?.getStringExtra("result")!!
+                Log.e("PRINT_DATA", "RESULT_OK_$result")
                 viewModel.callRestaurantQR(result)
             }
             if (resultCode === Activity.RESULT_CANCELED) {

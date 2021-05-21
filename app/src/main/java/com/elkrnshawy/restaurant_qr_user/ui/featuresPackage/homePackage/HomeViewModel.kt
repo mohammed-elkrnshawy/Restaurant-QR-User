@@ -65,7 +65,7 @@ class HomeViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<RestaurantCodeResponse?>, t: Throwable) {
-                dataObserveQR.postError(GenericError(t.message,null,207,true))
+                dataObserveQR.postError(GenericError(t.message,null,500,true))
             }
         })
     }
