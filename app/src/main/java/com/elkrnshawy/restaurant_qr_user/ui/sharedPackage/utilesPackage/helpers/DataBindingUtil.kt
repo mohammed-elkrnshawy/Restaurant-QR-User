@@ -31,6 +31,10 @@ fun convertPrice(context: Context,price: Double): String {
     return price.toString()+" "+context.resources.getString(R.string.SAR)
 }
 
+fun idReservation(num: Int): String {
+    return "#$num"
+}
+
 fun convertString(context: Context, num: Int): String {
     return num.toString()
 }

@@ -83,4 +83,9 @@
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.accountPackage.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" /><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/>
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationFragment"
+        android:label="reservation_fragment"
+        tools:layout="@layout/reservation_fragment" /><action android:id="@+id/action_global_reservationFragment" app:destination="@id/reservationFragment"/>
 </navigation>

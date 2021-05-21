@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         txtReservation?.setOnClickListener {
-            NavControllerHelper.getNavController()?.navigate(R.id.action_global_profileFragment)
+            NavControllerHelper.getNavController()?.navigate(R.id.action_global_reservationFragment)
             drawer?.close()
         }
     }

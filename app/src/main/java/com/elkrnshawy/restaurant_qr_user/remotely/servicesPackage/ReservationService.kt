@@ -2,6 +2,7 @@ package com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage
 
 import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage.JoinWaitingResponse
+import com.elkrnshawy.restaurant_qr_user.models.myReservationPackage.MyReservationResponse
 import com.elkrnshawy.restaurant_qr_user.models.reservationPackage.ReservationResponse
 import com.elkrnshawy.restaurant_qr_user.models.waitingCountPackage.WaitingCountResponse
 import retrofit2.Call
@@ -34,6 +35,14 @@ interface ReservationService {
             @Field("date") date: String,
             @Field("time") time: String
     ): Call<ReservationResponse>?
+
+
+    @GET("myReservations")
+    fun getReservation(
+        @Header("Authorization") authorization: String,
+        @Header("Content-Language") localization: String,
+        @Header("Accept") accept: String
+    ): Call<MyReservationResponse>?
 
 
     @GET("waitinglist/{id}")

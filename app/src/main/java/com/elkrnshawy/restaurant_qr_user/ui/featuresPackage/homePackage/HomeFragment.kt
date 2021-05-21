@@ -18,6 +18,7 @@ import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCode
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
@@ -55,6 +56,7 @@ class HomeFragment : ParentFragment() {
 
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
+        NavControllerHelper.setupNavControl(findNavController())
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         restaurantAdapter= RestaurantAdapter(arrayListOf()) { view, position ->
             val bundle = Bundle()
@@ -127,7 +129,6 @@ class HomeFragment : ParentFragment() {
     }
 
     private fun onSuccessQR(data: RestaurantCodeData?) {
-        Log.e("PRINT_DATA", "READ_QR_OK")
        if (qrClicked){
            val bundle = Bundle()
            bundle.putSerializable("RestaurantObject", data?.getRestaurant())
@@ -149,7 +150,6 @@ class HomeFragment : ParentFragment() {
         if (requestCode === 200) {
             if (resultCode === Activity.RESULT_OK) {
                 val result: String = data?.getStringExtra("result")!!
-                Log.e("PRINT_DATA", "RESULT_OK_$result")
                 viewModel.callRestaurantQR(result)
             }
             if (resultCode === Activity.RESULT_CANCELED) {
