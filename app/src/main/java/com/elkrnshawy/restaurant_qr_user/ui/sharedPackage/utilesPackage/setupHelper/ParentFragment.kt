@@ -63,23 +63,27 @@ open class ParentFragment : Fragment(), setupView {
         }catch (e: java.lang.Exception){}
             v_loading = view.findViewById(R.id.v_loading)
             vEmpty = view.findViewById(R.id.v_empty)
-           /* progress_bar = view.findViewById(R.id.progress_bar)
 
             v_serverError = view.findViewById(R.id.v_serverError)
             v_noInternet = view.findViewById(R.id.v_noInternet)
-            try {
-                tvError = v_serverError?.findViewById(R.id.tvError)
-            } catch (e: Exception) {
-            }
+            tvError = view.findViewById(R.id.tvError)
             btn_retry = view.findViewById(R.id.btn_retry)
 
             if (v_noInternet != null && btn_retry != null) {
                 btn_retry?.setOnClickListener { retryClickListener?.onRetryClick() }
-            }*/
+            }
+
+            setRetryClickListener(this)
+           /* progress_bar = view.findViewById(R.id.progress_bar)
+            */
         }
     }
 
     override fun handleToolbar() {
+
+    }
+
+    override fun onBackPress() {
 
     }
 

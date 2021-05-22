@@ -1,5 +1,6 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.MutableResultWrapper
@@ -31,12 +32,12 @@ class HomeViewModel : ViewModel() {
                         dataObserveRestaurant.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
                     }
                 }else{
-                    dataObserveRestaurant.postError(GenericError(response.message(),null,response.code(),true))
+                    dataObserveRestaurant.postError(GenericError(response.message(),null,null,false))
                 }
             }
 
             override fun onFailure(call: Call<RestaurantResponse?>, t: Throwable) {
-                dataObserveRestaurant.postError(GenericError(t.message,null,207,true))
+                dataObserveRestaurant.postError(GenericError(t.message,t,null,false))
             }
         })
     }

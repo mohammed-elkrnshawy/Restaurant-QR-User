@@ -88,4 +88,14 @@
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.reservationPackage.ReservationFragment"
         android:label="reservation_fragment"
         tools:layout="@layout/reservation_fragment" /><action android:id="@+id/action_global_reservationFragment" app:destination="@id/reservationFragment"/>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.contactPackage.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.languagePackage.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" /><action android:id="@+id/action_global_contactFragment" app:destination="@id/contactFragment"/><action android:id="@+id/action_global_languageFragment" app:destination="@id/languageFragment"/>
 </navigation>

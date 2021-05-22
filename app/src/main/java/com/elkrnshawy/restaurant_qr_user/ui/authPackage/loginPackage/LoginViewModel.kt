@@ -35,7 +35,7 @@ class LoginViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<AuthResponse?>, t: Throwable) {
-                dataObserveLogin.postError(GenericError(t.localizedMessage,null,call.execute().code(),true))
+                dataObserveLogin.postError(GenericError(t.message,null,call.execute().code(),true))
             }
         })
     }

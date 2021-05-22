@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
@@ -50,6 +51,7 @@ class HomeFragment : ParentFragment() {
         super.onViewCreated(view, savedInstanceState)
         onBackResult()
         handleToolbar()
+        onBackPress()
         onComponentsClick()
         observeDataQR()
     }
@@ -76,6 +78,21 @@ class HomeFragment : ParentFragment() {
         }
     }
 
+    override fun onBackPress() {
+        super.onBackPress()
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    if (HomeActivity.ifOpened()){
+                        HomeActivity.close()
+                        return
+                    }
+                    activity?.finishAffinity()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
     override fun onComponentsClick() {
         super.onComponentsClick()
 
@@ -83,6 +100,11 @@ class HomeFragment : ParentFragment() {
             qrClicked=true
             startActivityForResult(Intent(requireContext(), ScanActivity::class.java), 200)
         }
+    }
+
+    override fun onRetryClick() {
+        super.onRetryClick()
+        Log.e("PRINT_DATA","Error Click")
     }
 
     private fun observeData(){
@@ -145,27 +167,12 @@ class HomeFragment : ParentFragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 200) {
-            if (resultCode === Activity.RESULT_OK) {
-                val result: String = data?.getStringExtra("result")!!
-                viewModel.callRestaurantQR(result)
-            }
-            if (resultCode === Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
-    }
-
     private fun onBackResult(){
         val navBackStackEntry = findNavController().currentBackStackEntry
         val observer = LifecycleEventObserver { source, event ->
             if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry!!.savedStateHandle.contains("isScanQR")) {
                 val result = navBackStackEntry!!.savedStateHandle.get<Boolean>("isScanQR")!!
                 if (result) {
-                    /*qrClicked=true
-                    startActivityForResult(Intent(requireContext(), ScanActivity::class.java), 200)*/
                     binding.cardQR.callOnClick()
                 }
             }
@@ -183,4 +190,18 @@ class HomeFragment : ParentFragment() {
             }
         })
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === 200) {
+            if (resultCode === Activity.RESULT_OK) {
+                val result: String = data?.getStringExtra("result")!!
+                viewModel.callRestaurantQR(result)
+            }
+            if (resultCode === Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
+
 }

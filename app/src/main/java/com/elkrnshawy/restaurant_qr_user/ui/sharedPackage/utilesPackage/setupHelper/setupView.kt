@@ -13,6 +13,9 @@ interface setupView {
 
     fun handleToolbar()
 
+    fun onBackPress()
+
+
     fun onComponentsClick()
 
     fun onRetryClick()
