@@ -10,12 +10,19 @@
         android:layout_height="match_parent"
         android:id="@+id/v_loading">
 
-        <pl.droidsonroids.gif.GifImageView
+        <RelativeLayout
+            android:background="@color/colorWhite"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/loading"
-            android:scaleType="centerCrop"/>
+            android:layout_height="300dp">
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/loading"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
 
     </RelativeLayout>
 
