@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem;
+import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.aboutPackage.AboutFragment;
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryFragment;
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.servicesPackage.ServicesFragment;
 
@@ -17,6 +18,7 @@ public class SlidePagerAdapter extends FragmentStateAdapter {
     private int tableNumber;
     private ServicesFragment servicesFragment;
     private CategoryFragment categoryFragment;
+    private AboutFragment aboutFragment;
 
     public SlidePagerAdapter(FragmentActivity fa, RestaurantItem item, int tableNumber) {
         super(fa);
@@ -31,23 +33,29 @@ public class SlidePagerAdapter extends FragmentStateAdapter {
         args.putSerializable("RestaurantObject", item);
         args.putSerializable("TableNumber", tableNumber);
 
-        if (position==1){
+        if (position==2){
             if (servicesFragment==null){
                 servicesFragment=new ServicesFragment();
             }
             servicesFragment.setArguments(args);
             return servicesFragment;
-        }else {
+        }else if (position==1){
             if (categoryFragment==null){
                 categoryFragment=new CategoryFragment();
             }
             categoryFragment.setArguments(args);
             return categoryFragment;
+        }else {
+            if (aboutFragment==null){
+                aboutFragment=new AboutFragment();
+            }
+            aboutFragment.setArguments(args);
+            return aboutFragment;
         }
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

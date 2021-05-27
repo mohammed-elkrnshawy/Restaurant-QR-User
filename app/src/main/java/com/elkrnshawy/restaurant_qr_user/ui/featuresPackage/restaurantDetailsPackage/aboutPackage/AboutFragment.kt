@@ -1,24 +1,22 @@
-package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage
+package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.aboutPackage
 
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.elkrnshawy.restaurant_qr_user.R
+import com.elkrnshawy.restaurant_qr_user.databinding.FragmentAboutBinding
 import com.elkrnshawy.restaurant_qr_user.databinding.FragmentCategoryBinding
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
-import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.RestaurantDetailsFragmentArgs
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
+import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryAdapter
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
-class CategoryFragment : ParentFragment() {
-    private lateinit var categoryAdapter: CategoryAdapter<CategoryItem>
-    private lateinit var binding: FragmentCategoryBinding
+class AboutFragment : ParentFragment() {
+    private lateinit var binding: FragmentAboutBinding
     private var restaurantObject : RestaurantItem? =null
     private var mainView: View? =null
 
@@ -32,7 +30,7 @@ class CategoryFragment : ParentFragment() {
             savedInstanceState: Bundle?
     ): View? {
         if (mainView==null){
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about, container, false)
             mainView = binding.root;
         }
         return mainView;
@@ -56,13 +54,6 @@ class CategoryFragment : ParentFragment() {
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
 
-        categoryAdapter= CategoryAdapter(arrayListOf()) { view, position ->
-            val bundle = Bundle()
-            bundle.putSerializable("CategoryObject",categoryAdapter.getItem(position))
-            findNavController().navigate(R.id.action_global_subcategoryFragment, bundle)
-        }
-
-        binding.adapter=categoryAdapter
-        categoryAdapter.setItems(restaurantObject?.getCategories() as List<CategoryItem>)
+        binding.restaurantObject=restaurantObject
     }
 }

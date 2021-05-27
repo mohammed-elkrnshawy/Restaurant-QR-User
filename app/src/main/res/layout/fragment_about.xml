@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="restaurantObject"
+            type="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.featuresPackage.restaurantDetailsPackage.aboutPackage.AboutFragment">
+
+        <include layout="@layout/layout_background"/>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RatingBar
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:rating="3"
+                    android:progressTint="@color/colorYellow"/>
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:padding="5dp"
+                    android:textSize="10sp"
+                    android:text="@string/reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@{restaurantObject.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:padding="5dp"
+                android:id="@+id/txtAbout"
+                android:text="@{restaurantObject.description}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrayBlack"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/colorGrayBlack"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:drawableStart="@drawable/ic_location_default"
+                android:drawableTint="@color/colorPrimary"
+                android:drawablePadding="10sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@{restaurantObject.description}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_gravity="end"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:padding="5dp"
+                android:textSize="10sp"
+                android:text="@string/get_direction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

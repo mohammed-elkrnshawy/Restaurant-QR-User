@@ -68,6 +68,7 @@ class RestaurantDetailsFragment : ParentFragment() {
         super.setupComponents(view)
         titles = ArrayList()
         titles.add(getString(R.string.details))
+        titles.add(getString(R.string.category))
         titles.add(getString(R.string.services))
 
         pagerAdapter = SlidePagerAdapter(requireActivity(),restaurantObject,tableNumber)

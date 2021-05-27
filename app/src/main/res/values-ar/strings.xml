@@ -48,4 +48,7 @@
     <string name="contact_us">تواصل معنا</string>
     <string name="language">اللغة</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="reviews">التقييمات</string>
+    <string name="address">العنوان</string>
+    <string name="get_direction">فتح العنوان</string>
 </resources>

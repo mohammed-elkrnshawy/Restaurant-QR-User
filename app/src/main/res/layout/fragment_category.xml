@@ -4,10 +4,6 @@
         <variable
             name="adapter"
             type="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.restaurantDetailsPackage.categoryPackage.CategoryAdapter" />
-
-        <variable
-            name="restaurantObject"
-            type="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
     </data>
 
     <RelativeLayout
@@ -20,23 +16,10 @@
 
         <include layout="@layout/layout_background"/>
 
-        <TextView
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:paddingTop="10dp"
-            android:padding="10dp"
-            android:id="@+id/txtAbout"
-            android:text="@{restaurantObject.description}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorGrayBlack"/>
-
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:paddingStart="17.5dp"
             android:paddingEnd="17.5dp"
-            android:layout_below="@id/txtAbout"
+            android:layout_below="@id/linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layoutAnimation="@anim/layout_animation"
