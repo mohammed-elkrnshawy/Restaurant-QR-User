@@ -35,7 +35,19 @@ fun idReservation(num: Int): String {
     return "#$num"
 }
 
-fun convertString(context: Context, num: Int): String {
+fun convertString(num: Int): String {
     return num.toString()
+}
+
+fun convertString(num: Double): String {
+    return num.toString()
+}
+
+fun convertString(num: Float): String {
+    return num.toString()
+}
+
+fun commentUser(name: String): String {
+    return "_$name***"
 }
 

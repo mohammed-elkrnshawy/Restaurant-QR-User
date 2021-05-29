@@ -38,6 +38,7 @@ class HomeViewModel : ViewModel() {
 
             override fun onFailure(call: Call<RestaurantResponse?>, t: Throwable) {
                 dataObserveRestaurant.postError(GenericError(t.message,t,null,false))
+                Log.e("PRINT_DATA",t.message.toString())
             }
         })
     }

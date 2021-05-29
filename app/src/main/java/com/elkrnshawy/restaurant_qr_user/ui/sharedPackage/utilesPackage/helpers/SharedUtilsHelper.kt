@@ -11,6 +11,9 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
+import android.net.Uri
 import android.provider.Settings
 import android.view.View
 import android.view.Window
@@ -18,12 +21,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.MainActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager.Companion.getLocalization
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager.Companion.setLanguage
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.stfalcon.frescoimageviewer.ImageViewer
+import java.io.IOException
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
@@ -108,24 +113,6 @@ class SharedUtilsHelper {
         }
 
 
-//    @BindingAdapter("imageUrl")
-//    fun loadImageFromUrl(
-//        imageView: ImageView,
-//        imageUrl: String?
-//    ) {
-//        var imageUrl = imageUrl
-//        if (imageUrl == null || imageUrl.length == 0) {
-//            imageUrl = "0"
-//        }
-//        Log.d("msm", "loadImageFromUrl: 87979$imageUrl")
-//        Glide.with(imageView.context)
-//            .load(imageUrl)
-//            .placeholder(R.drawable.image_loading)
-//            .error(R.drawable.img_no_image)
-//            .into(imageView)
-//    }
-
-
 
         fun loadImage(imageView: ImageView, url: String?, imageWidth: Int, imageHeight: Int) {
             var url = url
@@ -204,6 +191,33 @@ class SharedUtilsHelper {
             dialog.show()
         }
 
+        fun getAddress(context: Context, lat: Double, lng: Double): String {
+            var stringAddress : String =""
+            val geocoder: Geocoder
+            val addresses: List<Address>
+            val locale = Locale(ConstantsHelper.Localization)
+            geocoder = Geocoder(context, locale)
+            try {
+                addresses = geocoder.getFromLocation(lat, lng, 1)
+                stringAddress = addresses[0].getAddressLine(0)
+                /*val city = addresses[0].locality
+                val state = addresses[0].adminArea
+                val country = addresses[0].countryName
+                val postalCode = addresses[0].postalCode
+                val knownName = addresses[0].featureName*/
+            } catch (e: IOException) {
+            } catch (e: IndexOutOfBoundsException) {
+                stringAddress = context.resources.getString(R.string.no_address_detected)
+            }
+
+            return stringAddress
+        }
+
+        fun openGoogleMap(context: Context, lat: Double, lng: Double){
+            val intent = Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=$lat,$lng"))
+            context.startActivity(intent)
+        }
     }
 
 }

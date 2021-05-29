@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.DataBindingUtilKt"/>
+
+        <variable
+            name="restaurantObject"
+            type="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+
+        <variable
+            name="adapter"
+            type="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.commentPackage.CommentAdapter" />
+
+    </data>
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.featuresPackage.commentPackage.CommentFragment">
+
+        <include layout="@layout/layout_background"/>
+
+        <include layout="@layout/bar_fragment"
+            android:id="@+id/toolbar"/>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:orientation="horizontal"
+            android:layout_below="@id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp">
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:rating="@{restaurantObject.rates}"
+                android:progressTint="@color/colorYellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                tools:text="4.2"
+                android:text="@{DataBindingUtilKt.convertString(restaurantObject.rates)}"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="10dp"
+            android:layout_below="@id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_comment"
+            />
+
+        <include layout="@layout/layout_helper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linear"/>
+
+    </RelativeLayout>
+
+</layout>

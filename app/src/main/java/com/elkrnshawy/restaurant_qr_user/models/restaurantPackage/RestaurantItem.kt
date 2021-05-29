@@ -3,6 +3,7 @@ package com.elkrnshawy.restaurant_qr_user.models.restaurantPackage
 import android.content.Context
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.CategoryItem
+import com.elkrnshawy.restaurant_qr_user.models.commentPackage.CommentItem
 import com.elkrnshawy.restaurant_qr_user.models.servicePackage.ServiceItem
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -34,6 +35,18 @@ class RestaurantItem : Serializable {
     @Expose
     private var description: String? = null
 
+    @SerializedName("rates")
+    @Expose
+    private var rates: Float? = null
+
+    @SerializedName("lat")
+    @Expose
+    private var lat: String? = null
+
+    @SerializedName("lng")
+    @Expose
+    private var lng: String? = null
+
     @SerializedName("services")
     @Expose
     private var services: List<ServiceItem?>? = null
@@ -41,6 +54,10 @@ class RestaurantItem : Serializable {
     @SerializedName("categories")
     @Expose
     private var categories: List<CategoryItem?>? = null
+
+    @SerializedName("comments")
+    @Expose
+    private var comments: List<CommentItem?>? = null
 
     fun getId(): Int? {
         return id
@@ -74,6 +91,24 @@ class RestaurantItem : Serializable {
         this.email = email
     }
 
+    fun getRates(): Float? {
+        return rates
+    }
+
+    fun getLat(): Double? {
+        return if (lat?.isEmpty() == true)
+            0.0
+        else
+            lat?.toDouble()
+    }
+
+    fun getLng(): Double? {
+        return if (lng?.isEmpty() == true)
+            0.0
+        else
+            lng?.toDouble()
+    }
+
     fun getDescription(): String? {
         return description
     }
@@ -104,6 +139,14 @@ class RestaurantItem : Serializable {
 
     fun setCategories(categories: List<CategoryItem?>?) {
         this.categories = categories
+    }
+
+    fun getComments(): List<CommentItem?>? {
+        return comments
+    }
+
+    fun setComments(comments: List<CommentItem?>?) {
+        this.comments = comments
     }
 
     fun getCategoriesString(context: Context) : String {

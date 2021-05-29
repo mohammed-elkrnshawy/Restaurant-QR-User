@@ -36,6 +36,12 @@
             android:name="TableNumber"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_contactRestaurantFragment"
+            app:destination="@id/contactRestaurantFragment" />
     </fragment>
     <fragment
         android:id="@+id/subcategoryFragment"
@@ -98,4 +104,22 @@
         android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.languagePackage.LanguageFragment"
         android:label="fragment_language"
         tools:layout="@layout/fragment_language" /><action android:id="@+id/action_global_contactFragment" app:destination="@id/contactFragment"/><action android:id="@+id/action_global_languageFragment" app:destination="@id/languageFragment"/>
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.commentPackage.CommentFragment"
+        android:label="comment_fragment"
+        tools:layout="@layout/comment_fragment" >
+        <argument android:name="restaurantObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </fragment>
+    <action android:id="@+id/action_global_commentFragment" app:destination="@id/commentFragment" />
+    <fragment
+        android:id="@+id/contactRestaurantFragment"
+        android:name="com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.contactPackage.ContactRestaurantFragment"
+        android:label="contact_restaurant_fragment"
+        tools:layout="@layout/contact_restaurant_fragment" >
+        <argument
+            android:name="restaurantObject"
+            app:argType="com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem" />
+    </fragment>
 </navigation>

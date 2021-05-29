@@ -115,5 +115,21 @@ class RestaurantDetailsFragment : ParentFragment() {
             }
             binding.fabMenu.close(true)
         }
+
+        binding.menuContact.setOnClickListener {
+            if (SharedPrefManager.getLoginStatus(requireContext())!!){
+                val bundle = Bundle()
+                bundle.putSerializable("restaurantObject",restaurantObject)
+                getNavController()?.navigate(R.id.action_restaurantDetailsFragment_to_contactRestaurantFragment,bundle)
+            }else{
+                SharedUtilsHelper.loginDialog(requireContext())
+            }
+            binding.fabMenu.close(true)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.fabMenu.close(true)
     }
 }

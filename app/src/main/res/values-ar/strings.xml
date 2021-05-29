@@ -19,7 +19,7 @@
     <string name="category">قائمة الطعام</string>
     <string name="details">عن المطعم</string>
     <string name="SAR">ر.س</string>
-    <string name="reservation">طلب حجز موعد</string>
+    <string name="reservation">حجز موعد</string>
     <string name="join_waiting_list">انضم الى قائمة الانتظار</string>
     <string name="reservation_date_time">تاريخ و وقت الحجز</string>
     <string name="people_number">عدد الاشخاص</string>
@@ -51,4 +51,10 @@
     <string name="reviews">التقييمات</string>
     <string name="address">العنوان</string>
     <string name="get_direction">فتح العنوان</string>
+    <string name="no_address_detected">لم يتم العثور علي عنوان</string>
+    <string name="contact_restaurant">تواصل مع المطعم</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="send_success">Send Successfully</string>
+    <string name="rate_and_comment">Comment And Rates</string>
 </resources>

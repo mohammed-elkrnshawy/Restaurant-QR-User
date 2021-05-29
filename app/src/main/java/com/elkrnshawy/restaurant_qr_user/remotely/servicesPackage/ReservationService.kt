@@ -1,5 +1,6 @@
 package com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage
 
+import com.elkrnshawy.restaurant_qr_user.models.contactResponse.ContactResponse
 import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.joinWaitingListPackage.JoinWaitingResponse
 import com.elkrnshawy.restaurant_qr_user.models.myReservationPackage.MyReservationResponse
@@ -69,5 +70,17 @@ interface ReservationService {
             @Header("Accept") accept: String,
             @Field("restaurant_id") restaurant_id: Int
     ): Call<JoinWaitingResponse>?
+
+    @FormUrlEncoded
+    @POST("contact")
+    fun contactRestaurant(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String,
+            @Field("restaurant_id") restaurant_id: Int,
+            @Field("name") name: String,
+            @Field("phone") phone: String,
+            @Field("message") message: String
+    ): Call<ContactResponse>?
 
 }
