@@ -57,4 +57,5 @@
     <string name="send">Send</string>
     <string name="send_success">Send Successfully</string>
     <string name="rate_and_comment">Comment And Rates</string>
+    <string name="add_comment"><u>Add Comment</u>></string>
 </resources>

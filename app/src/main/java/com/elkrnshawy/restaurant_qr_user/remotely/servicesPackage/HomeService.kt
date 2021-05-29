@@ -1,7 +1,9 @@
 package com.elkrnshawy.restaurant_qr_user.remotely.servicesPackage
 
+import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.SubcategoryResponse
 import com.elkrnshawy.restaurant_qr_user.models.commentPackage.CommentResponse
+import com.elkrnshawy.restaurant_qr_user.models.contactResponse.ContactResponse
 import com.elkrnshawy.restaurant_qr_user.models.productPackage.ProductResponse
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCodeResponse
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantResponse
@@ -53,4 +55,15 @@ interface HomeService {
             @Header("Accept") accept: String,
             @Path("restaurant_id") restaurant_id: Int
     ): Call<CommentResponse>?
+
+    @FormUrlEncoded
+    @POST("add_comment")
+    fun addComment(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String,
+            @Field("restaurant_id") restaurant_id: Int,
+            @Field("comment") comment: String,
+            @Field("rate") rate: Double
+    ): Call<StringResponse>?
 }

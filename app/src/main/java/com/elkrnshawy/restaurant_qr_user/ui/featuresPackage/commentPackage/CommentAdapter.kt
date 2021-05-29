@@ -52,9 +52,14 @@ public class CommentAdapter<T>(private val mItemsList: ArrayList<T>,
         notifyItemRangeChanged(startPosition, endPosition)
     }
 
-    public fun setItems(items: List<T>) {
+    fun setItems(items: List<T>) {
         mItemsList.clear()
         mItemsList.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun addItem(items: T) {
+        mItemsList.add(items)
         notifyDataSetChanged()
     }
 

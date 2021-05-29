@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <RatingBar
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
@@ -57,9 +57,20 @@
                 android:text="@{DataBindingUtilKt.convertString(restaurantObject.rates)}"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            android:layout_below="@id/linear"
+            android:text="@string/add_comment"
+            android:id="@+id/txtComment"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="10dp"
-            android:layout_below="@id/linear"
+            android:layout_below="@id/txtComment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             adapter="@{adapter}"
@@ -70,7 +81,7 @@
         <include layout="@layout/layout_helper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/linear"/>
+            android:layout_below="@id/toolbar"/>
 
     </RelativeLayout>
 

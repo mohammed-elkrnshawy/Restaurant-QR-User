@@ -1,6 +1,7 @@
 package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.commentPackage
 
 import androidx.lifecycle.ViewModel
+import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.commentPackage.CommentResponse
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.MutableResultWrapper
@@ -37,6 +38,36 @@ class CommentViewModel : ViewModel() {
 
             override fun onFailure(call: Call<CommentResponse?>, t: Throwable) {
                 dataObserveComment.postError(GenericError(t.localizedMessage,null,call.execute().code(),true))
+            }
+        })
+    }
+
+
+
+    private val dataObserveAddComment: MutableResultWrapper<StringResponse> = MutableResultWrapper()
+
+    fun getDataAddComment(): MutableResultWrapper<StringResponse> {
+        return dataObserveAddComment
+    }
+
+    fun callAddComment(token: String, restaurantID: Int, comment: String, rate: Double) {
+        dataObserveAddComment.postLoading()
+        ApiUtils.getHomeService()?.addComment(ConstantsHelper.BEARER_TOKEN+token, ConstantsHelper.Localization,
+                ConstantsHelper.ACCEPT,restaurantID,comment,rate)?.enqueue(object : Callback<StringResponse?> {
+            override fun onResponse(call: Call<StringResponse?>, response: Response<StringResponse?>) {
+                if (response.isSuccessful){
+                    if (response.body()?.getStatus()!!){
+                        dataObserveAddComment.postSuccess(response.body()!!)
+                    }else{
+                        dataObserveAddComment.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                    }
+                }else{
+                    dataObserveAddComment.postError(GenericError(response.message(),null,response.code(),true))
+                }
+            }
+
+            override fun onFailure(call: Call<StringResponse?>, t: Throwable) {
+                dataObserveAddComment.postError(GenericError(t.localizedMessage,null,call.execute().code(),true))
             }
         })
     }

@@ -53,8 +53,9 @@
     <string name="get_direction">فتح العنوان</string>
     <string name="no_address_detected">لم يتم العثور علي عنوان</string>
     <string name="contact_restaurant">تواصل مع المطعم</string>
-    <string name="message">Message</string>
-    <string name="send">Send</string>
-    <string name="send_success">Send Successfully</string>
-    <string name="rate_and_comment">Comment And Rates</string>
+    <string name="message">الرسالة</string>
+    <string name="send">ارسال</string>
+    <string name="send_success">تم الارسال بنجاح</string>
+    <string name="rate_and_comment">التعليقات و الاراء</string>
+    <string name="add_comment"><u>اضافة تعليق جديد</u></string>
 </resources>

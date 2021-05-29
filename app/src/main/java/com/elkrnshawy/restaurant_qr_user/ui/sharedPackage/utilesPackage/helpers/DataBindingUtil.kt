@@ -51,3 +51,8 @@ fun commentUser(name: String): String {
     return "_$name***"
 }
 
+fun commentDate(date: String): String {
+    val s =date.split("T")[0].toString()
+    return "($s)"
+}
+
