@@ -19,6 +19,30 @@ class ContactRestaurantViewModel : ViewModel() {
         return dataObserveContactRestaurant
     }
 
+    fun callContact(token: String, username: String, phone: String, message: String) {
+        dataObserveContactRestaurant.postLoading()
+        ApiUtils.getReservationService()?.contactAdmin(
+            ConstantsHelper.BEARER_TOKEN+token,
+            ConstantsHelper.Localization, ConstantsHelper.ACCEPT,username,phone,message)?.clone()?.
+        enqueue(object : Callback<ContactResponse?> {
+            override fun onResponse(call: Call<ContactResponse?>, response: Response<ContactResponse?>) {
+                if (response.isSuccessful){
+                    if (response.body()?.getStatus()!!){
+                        dataObserveContactRestaurant.postSuccess(response.body()!!)
+                    }else{
+                        dataObserveContactRestaurant.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                    }
+                }else{
+                    dataObserveContactRestaurant.postError(GenericError(response.message(),null,response.code(),true))
+                }
+            }
+
+            override fun onFailure(call: Call<ContactResponse?>, t: Throwable) {
+                dataObserveContactRestaurant.postError(GenericError(t.localizedMessage,null,call.execute().code(),true))
+            }
+        })
+    }
+
     fun callContactRestaurant(token: String, restaurant_id: Int, username: String, phone: String, message: String) {
         dataObserveContactRestaurant.postLoading()
         ApiUtils.getReservationService()?.contactRestaurant(

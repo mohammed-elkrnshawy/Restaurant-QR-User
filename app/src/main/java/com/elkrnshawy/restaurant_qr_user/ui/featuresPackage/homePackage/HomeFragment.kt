@@ -20,6 +20,7 @@ import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantItem
 import com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.scanPackage.ScanActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity.HomeActivity
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 
 class HomeFragment : ParentFragment() {
@@ -54,13 +55,15 @@ class HomeFragment : ParentFragment() {
         onBackPress()
         onComponentsClick()
         observeDataQR()
+        observeCurrentOrderData()
     }
 
     override fun setupComponents(view: View?) {
         super.setupComponents(view)
         NavControllerHelper.setupNavControl(findNavController())
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        restaurantAdapter= RestaurantAdapter(arrayListOf()) { view, position ->
+
+        restaurantAdapter= RestaurantAdapter(arrayListOf()) { _: View, position ->
             val bundle = Bundle()
             bundle.putSerializable("RestaurantObject", restaurantAdapter.getItem(position))
             findNavController().navigate(R.id.action_homeFragment_to_restaurantDetailsFragment, bundle)
@@ -121,7 +124,34 @@ class HomeFragment : ParentFragment() {
                             dataResponse.data?.getData()?.getItems(),
                             dataResponse.data?.getData()?.getPaginate()
                     )
-                    handleErrorMsg(null)
+                    hideMainLoading()
+                }
+                Status.ResponseArrived -> {
+
+                }
+            }
+        })
+    }
+
+    private fun observeCurrentOrderData(){
+        viewModel.getDataCurrentOrder().observe(viewLifecycleOwner, Observer { dataResponse ->
+            when (dataResponse!!.status) {
+                Status.Loading -> {
+                    binding.linearCurrentOrder.visibility=View.GONE
+                    showMainLoading()
+                }
+                Status.Failure -> {
+                    Log.e("PRINT_DATA","Here 2")
+                    handleErrorMsg(dataResponse.error)
+                }
+                Status.Success -> {
+                    Log.e("PRINT_DATA","Here")
+                    if (dataResponse.data?.getData()?.getRestaurant()!=null){
+                        binding.linearCurrentOrder.visibility=View.VISIBLE
+                        binding.txtStatus.text=dataResponse.data?.getData()?.getStatus().toString()
+                                .replace("assigned",resources.getString(R.string.status_assigned))
+                        binding.vmCurrentOrder=dataResponse.data?.getData()!!
+                    }
                 }
                 Status.ResponseArrived -> {
 
@@ -202,6 +232,12 @@ class HomeFragment : ParentFragment() {
                 //Write your code if there's no result
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (SharedPrefManager.getLoginStatus(requireContext())!! && requireContext()!=null)
+            viewModel.callCurrentOrder(SharedPrefManager.getUserData(requireContext())?.getToken().toString())
     }
 
 }

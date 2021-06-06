@@ -58,4 +58,14 @@
     <string name="send_success">تم الارسال بنجاح</string>
     <string name="rate_and_comment">التعليقات و الاراء</string>
     <string name="add_comment"><u>اضافة تعليق جديد</u></string>
+    <string name="current_order">طلب الخدمة الحالى</string>
+    <string name="status">الحالة</string>
+    <string name="waiter_name">اسم النادل</string>
+    <string name="status_assigned">جارية</string>
+    <string name="service">اسم الخدمة</string>
+    <string name="edit">تعديل</string>
+    <string name="contact">تواصل معنا</string>
+    <string name="AR">اللغة العربية</string>
+    <string name="Eng">English Language</string>
+    <string name="select_your_language">من فضلك اختار اللغة</string>
 </resources>

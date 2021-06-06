@@ -83,4 +83,15 @@ interface ReservationService {
             @Field("message") message: String
     ): Call<ContactResponse>?
 
+    @FormUrlEncoded
+    @POST("contact")
+    fun contactAdmin(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String,
+            @Field("name") name: String,
+            @Field("phone") phone: String,
+            @Field("message") message: String
+    ): Call<ContactResponse>?
+
 }

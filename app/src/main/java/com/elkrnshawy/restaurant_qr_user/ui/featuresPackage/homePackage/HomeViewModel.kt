@@ -2,6 +2,7 @@ package com.elkrnshawy.restaurant_qr_user.ui.featuresPackage.homePackage
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.elkrnshawy.restaurant_qr_user.models.currentOrderPackage.CurrentOrderResponse
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.GenericError
 import com.elkrnshawy.restaurant_qr_user.models.generalResponse.MutableResultWrapper
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCodeResponse
@@ -68,6 +69,39 @@ class HomeViewModel : ViewModel() {
 
             override fun onFailure(call: Call<RestaurantCodeResponse?>, t: Throwable) {
                 dataObserveQR.postError(GenericError(t.message,null,500,true))
+            }
+        })
+    }
+
+
+
+    private val dataObserveCurrentOrder: MutableResultWrapper<CurrentOrderResponse> = MutableResultWrapper()
+
+    fun getDataCurrentOrder(): MutableResultWrapper<CurrentOrderResponse> {
+        return dataObserveCurrentOrder
+    }
+
+    fun callCurrentOrder(token: String) {
+        dataObserveCurrentOrder.postLoading()
+        ApiUtils.getHomeService()?.getCurrentOrder(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization,
+                ConstantsHelper.ACCEPT)?.clone()?.enqueue(object : Callback<CurrentOrderResponse?> {
+            override fun onResponse(call: Call<CurrentOrderResponse?>, response: Response<CurrentOrderResponse?>) {
+                if (response.isSuccessful){
+                    if (response.body()?.getStatus()!!){
+                        dataObserveCurrentOrder.postSuccess(response.body()!!)
+                    }else{
+                        Log.e("PRINT_DATA","2")
+                        dataObserveCurrentOrder.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                    }
+                }else{
+                    Log.e("PRINT_DATA","3")
+                    dataObserveCurrentOrder.postError(GenericError(response.message(),null,null,true))
+                }
+            }
+
+            override fun onFailure(call: Call<CurrentOrderResponse?>, t: Throwable) {
+                Log.e("PRINT_DATA","1")
+                dataObserveCurrentOrder.postError(GenericError("",null,null,true))
             }
         })
     }

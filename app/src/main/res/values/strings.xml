@@ -58,4 +58,14 @@
     <string name="send_success">Send Successfully</string>
     <string name="rate_and_comment">Comment And Rates</string>
     <string name="add_comment"><u>Add Comment</u>></string>
+    <string name="current_order">Current Order</string>
+    <string name="status">Status</string>
+    <string name="waiter_name">Waiter Name</string>
+    <string name="status_assigned">Assigned</string>
+    <string name="service">Service</string>
+    <string name="edit">Edit</string>
+    <string name="contact">Contact Us</string>
+    <string name="AR">AR</string>
+    <string name="Eng">EN</string>
+    <string name="select_your_language">Select Your Language</string>
 </resources>

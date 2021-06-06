@@ -11,5 +11,7 @@ class ConstantsHelper {
 
         var Localization = "ar"
         var toLogin = false
+
+        var ASSIGN_PENDING = "assign"
     }
 }

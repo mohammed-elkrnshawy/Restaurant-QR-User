@@ -92,6 +92,7 @@ open class ParentFragment : Fragment(), setupView {
     }
 
     override fun onRetryClick() {
+        v_noInternet?.visibility=View.GONE
 
     }
 

@@ -1,5 +1,6 @@
 package com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -68,7 +69,10 @@ class HomeActivity : AppCompatActivity() {
 
         if (SharedPrefManager.getLoginStatus(this)!!) txtLogout?.visibility=View.VISIBLE
         txtLogout?.setOnClickListener {
-
+            SharedPrefManager.setLoginStatus(false,this)
+            startActivity(Intent(this, MainActivity::class.java))
+            finishAffinity()
+            drawer?.close()
         }
     }
 

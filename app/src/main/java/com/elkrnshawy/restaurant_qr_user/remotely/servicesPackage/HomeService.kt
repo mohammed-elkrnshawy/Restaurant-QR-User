@@ -4,6 +4,7 @@ import com.elkrnshawy.restaurant_qr_user.models.StringResponse
 import com.elkrnshawy.restaurant_qr_user.models.categoryPackage.SubcategoryResponse
 import com.elkrnshawy.restaurant_qr_user.models.commentPackage.CommentResponse
 import com.elkrnshawy.restaurant_qr_user.models.contactResponse.ContactResponse
+import com.elkrnshawy.restaurant_qr_user.models.currentOrderPackage.CurrentOrderResponse
 import com.elkrnshawy.restaurant_qr_user.models.productPackage.ProductResponse
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantCodeResponse
 import com.elkrnshawy.restaurant_qr_user.models.restaurantPackage.RestaurantResponse
@@ -66,4 +67,12 @@ interface HomeService {
             @Field("comment") comment: String,
             @Field("rate") rate: Double
     ): Call<StringResponse>?
+
+    @Headers("Accept: application/json")
+    @GET("getCurrentOrder")
+    fun getCurrentOrder(
+            @Header("Authorization") authorization: String,
+            @Header("Content-Language") localization: String,
+            @Header("Accept") accept: String
+    ): Call<CurrentOrderResponse>?
 }

@@ -52,13 +52,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="@string/contact_us"
+                        android:text="@string/contact_restaurant"
                         android:textColor="@color/colorPrimary" />
 
 
 
                     <EditText
-                        android:id="@+id/txtUsername"
+                        android:id="@+id/edtUsername"
                         android:inputType="text"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
 
 
                     <EditText
-                        android:id="@+id/txtPhone"
+                        android:id="@+id/edtPhone"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -89,8 +89,8 @@
                         android:textSize="14sp"/>
 
 
-                    <EditText
-                        android:id="@+id/txtMail"
+                    <!--<EditText
+                        android:id="@+id/edtMail"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -104,11 +104,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp"/>-->
 
 
                     <EditText
-                        android:id="@+id/txtMessage"
+                        android:id="@+id/edtMessage"
                         android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="85dp"
