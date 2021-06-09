@@ -1,18 +1,19 @@
 package com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.sharedActivity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.elkrnshawy.restaurant_qr_user.R
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.ConstantsHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.NavControllerHelper
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedPrefManager
 import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.SharedUtilsHelper
-import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.setupHelper.ParentFragment
 import com.infideap.drawerbehavior.AdvanceDrawerLayout
+import kotlinx.android.synthetic.main.layout_drawer.*
 
 class HomeActivity : AppCompatActivity() {
     private var txtProfile: TextView? =null
@@ -67,9 +68,15 @@ class HomeActivity : AppCompatActivity() {
             drawer?.close()
         }
 
+        txtJoin?.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(ConstantsHelper.JoinLink))
+            startActivity(browserIntent)
+            drawer?.close()
+        }
+
         if (SharedPrefManager.getLoginStatus(this)!!) txtLogout?.visibility=View.VISIBLE
         txtLogout?.setOnClickListener {
-            SharedPrefManager.setLoginStatus(false,this)
+            SharedPrefManager.setLoginStatus(false, this)
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
             drawer?.close()

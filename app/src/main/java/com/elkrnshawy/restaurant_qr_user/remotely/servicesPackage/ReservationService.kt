@@ -68,7 +68,8 @@ interface ReservationService {
             @Header("Authorization") authorization: String,
             @Header("Content-Language") localization: String,
             @Header("Accept") accept: String,
-            @Field("restaurant_id") restaurant_id: Int
+            @Field("restaurant_id") restaurant_id: Int,
+            @Field("count") count: Int
     ): Call<JoinWaitingResponse>?
 
     @FormUrlEncoded

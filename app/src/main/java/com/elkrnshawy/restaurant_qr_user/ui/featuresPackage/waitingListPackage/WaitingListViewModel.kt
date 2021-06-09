@@ -48,10 +48,10 @@ class WaitingListViewModel : ViewModel() {
         return dataObserveJoinWaiting
     }
 
-    fun callJoinWaiting(token : String, restaurantID: Int) {
+    fun callJoinWaiting(token : String, restaurantID: Int, count: Int) {
         dataObserveJoinWaiting.postLoading()
-        ApiUtils.getReservationService()?.joinWaiting(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization, ConstantsHelper.ACCEPT,restaurantID)?.clone()?.
-        enqueue(object : Callback<JoinWaitingResponse?> {
+        ApiUtils.getReservationService()?.joinWaiting(ConstantsHelper.BEARER_TOKEN+token,ConstantsHelper.Localization,
+                ConstantsHelper.ACCEPT,restaurantID,count)?.clone()?.enqueue(object : Callback<JoinWaitingResponse?> {
             override fun onResponse(call: Call<JoinWaitingResponse?>, response: Response<JoinWaitingResponse?>) {
                 if (response.isSuccessful){
                     if (response.body()?.getStatus()!!){

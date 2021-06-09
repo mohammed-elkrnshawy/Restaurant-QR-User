@@ -78,6 +78,15 @@
             android:background="@color/colorGray"
             android:layout_below="@+id/txtReservation"/>
 
+        <TextView
+            android:id="@+id/txtJoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/join_us"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:textColor="@color/colorBlack"/>
+
     </LinearLayout>
 
     <TextView
