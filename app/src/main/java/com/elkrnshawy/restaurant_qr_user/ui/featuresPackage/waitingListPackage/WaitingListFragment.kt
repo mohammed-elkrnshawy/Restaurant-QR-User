@@ -191,8 +191,8 @@ class WaitingListFragment : ParentFragment() {
 
         val btnSubmit: Button = dialog.findViewById(R.id.btnSubmit)
         val txtCount: TextView = dialog.findViewById(R.id.txtCount)
-        val cardPlus: CardView = dialog.findViewById(R.id.cardPlus)
-        val cardMinus: CardView = dialog.findViewById(R.id.cardMinus)
+        val cardPlus: ImageView = dialog.findViewById(R.id.cardPlus)
+        val cardMinus: ImageView = dialog.findViewById(R.id.cardMinus)
 
         Objects.requireNonNull(dialog.window)?.attributes?.windowAnimations = R.style.alert_dialog
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
