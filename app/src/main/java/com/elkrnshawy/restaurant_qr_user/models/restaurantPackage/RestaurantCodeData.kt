@@ -12,7 +12,7 @@ class RestaurantCodeData : Serializable {
 
     @SerializedName("number")
     @Expose
-    private var number: Int? = null
+    private var number: String? = null
 
     @SerializedName("count")
     @Expose
@@ -30,11 +30,11 @@ class RestaurantCodeData : Serializable {
         this.id = id
     }
 
-    fun getNumber(): Int? {
+    fun getNumber(): String? {
         return number
     }
 
-    fun setNumber(number: Int?) {
+    fun setNumber(number: String?) {
         this.number = number
     }
 
