@@ -11,7 +11,7 @@ class CurrentOrderResponse {
     @Expose
     private var status: Boolean? = null
 
-    @SerializedName("message")
+    @SerializedName("msg")
     @Expose
     private var message: String? = null
 

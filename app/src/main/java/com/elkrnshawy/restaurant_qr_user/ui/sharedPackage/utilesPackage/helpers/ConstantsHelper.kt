@@ -14,5 +14,6 @@ class ConstantsHelper {
         var toLogin = false
 
         var ASSIGN_PENDING = "assign"
+        var PENDING_PENDING = "pending"
     }
 }

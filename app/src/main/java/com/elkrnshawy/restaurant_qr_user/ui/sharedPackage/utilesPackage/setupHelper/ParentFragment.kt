@@ -162,7 +162,8 @@ open class ParentFragment : Fragment(), setupView {
                         } else {
                             v_serverError!!.visibility = View.VISIBLE
                             if (error.msg?.length !== 0) {
-                                tvError?.setText(error.msg)
+                                v_serverError!!.visibility = View.GONE
+                                //tvError?.setText(error.msg)
                             }
                         }
                     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restaurant_QR_User</string>
+    <string name="app_name">Restaurant</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="connection_problem">لا يوجد اتصال بالانترنت</string>
@@ -69,4 +69,6 @@
     <string name="Eng">English Language</string>
     <string name="select_your_language">من فضلك اختار اللغة</string>
     <string name="join_us">انضم الينا</string>
+    <string name="status_pending">معلقة</string>
+    <string name="no_waiter">لم يتم تعيين نادل لطلبك</string>
 </resources>

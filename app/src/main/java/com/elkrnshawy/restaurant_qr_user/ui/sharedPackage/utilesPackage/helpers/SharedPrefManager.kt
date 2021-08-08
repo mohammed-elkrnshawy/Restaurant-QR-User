@@ -24,7 +24,7 @@ class SharedPrefManager {
 
         fun getLocalization(context: Context): String? {
             return context.getSharedPreferences(
-                "SHARED_PREF_NAME",
+                SHARED_PREF_NAME,
                 Context.MODE_PRIVATE
             ).getString("language", "ar")
         }

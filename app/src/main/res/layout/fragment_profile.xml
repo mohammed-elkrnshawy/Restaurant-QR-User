@@ -23,7 +23,6 @@
         <include layout="@layout/bar_fragment"
             android:id="@+id/toolbar"/>
 
-
         <ScrollView
             android:layout_below="@id/toolbar"
             android:layout_width="match_parent"

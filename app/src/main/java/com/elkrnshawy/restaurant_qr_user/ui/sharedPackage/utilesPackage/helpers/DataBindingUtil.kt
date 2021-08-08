@@ -3,6 +3,7 @@ package com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.elkrnshawy.restaurant_qr_user.R
@@ -12,8 +13,9 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("imageUriOffline")
 fun imageUriOffline(
-        imageView: ImageView,
-        imageUriOffline: Uri?) {
+    imageView: ImageView,
+    imageUriOffline: Uri?
+) {
     if (imageUriOffline!=null)
     {
         imageView.setImageURI(imageUriOffline)
@@ -36,10 +38,11 @@ fun idReservation(num: Int): String {
     return "#$num"
 }
 
-fun convertStatus(context: Context, status: String): String? {
-    Log.e("STATUS_PRINT", status)
-    return status.replace(ConstantsHelper.ASSIGN_PENDING, context.resources.getString(R.string.status_assigned))
-
+fun replaceWaiter(context: Context, waiterName: String): String {
+    return if (waiterName == "")
+        context.resources.getString(R.string.no_waiter)
+    else
+        waiterName
 }
 
 fun convertString(num: Int): String {

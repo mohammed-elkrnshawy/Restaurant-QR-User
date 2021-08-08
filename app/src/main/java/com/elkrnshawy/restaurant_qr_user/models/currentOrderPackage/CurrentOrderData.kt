@@ -1,5 +1,8 @@
 package com.elkrnshawy.restaurant_qr_user.models.currentOrderPackage
 
+import android.content.Context
+import com.elkrnshawy.restaurant_qr_user.R
+import com.elkrnshawy.restaurant_qr_user.ui.sharedPackage.utilesPackage.helpers.ConstantsHelper
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -21,6 +24,10 @@ class CurrentOrderData : Serializable {
     @SerializedName("service")
     @Expose
     private var service: String? = null
+
+    @SerializedName("serviceDuration")
+    @Expose
+    private var serviceDuration: Int? = null
 
     @SerializedName("status")
     @Expose
@@ -70,8 +77,18 @@ class CurrentOrderData : Serializable {
         this.service = service
     }
 
-    fun getStatus(): String? {
+    fun getServiceDuration(): Int? {
+        return serviceDuration
+    }
+
+    fun setServiceDuration(serviceDuration: Int?) {
+        this.serviceDuration = serviceDuration
+    }
+
+    fun getStatus(context: Context): String? {
         return status
+                ?.replace(ConstantsHelper.PENDING_PENDING,context.resources.getString(R.string.status_pending))
+                ?.replace(ConstantsHelper.ASSIGN_PENDING,context.resources.getString(R.string.status_assigned))
     }
 
     fun setStatus(status: String?) {
@@ -86,8 +103,11 @@ class CurrentOrderData : Serializable {
         this.orderCreatedTime = orderCreatedTime
     }
 
-    fun getWaiter(): String? {
-        return waiter
+    fun getWaiter(context: Context): String? {
+        return if (waiter=="")
+            context.getString(R.string.no_waiter)
+        else
+            waiter
     }
 
     fun setWaiter(waiter: String?) {

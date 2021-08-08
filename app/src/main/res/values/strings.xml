@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restaurant_QR_User</string>
+    <string name="app_name">Restaurant</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="connection_problem">No Internet Connection</string>
@@ -69,4 +69,6 @@
     <string name="Eng">EN</string>
     <string name="select_your_language">Select Your Language</string>
     <string name="join_us">Join Us</string>
+    <string name="status_pending">Pending</string>
+    <string name="no_waiter">No Waiter Detected</string>
 </resources>

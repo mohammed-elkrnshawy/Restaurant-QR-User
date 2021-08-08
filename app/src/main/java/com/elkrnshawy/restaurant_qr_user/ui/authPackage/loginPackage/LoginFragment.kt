@@ -81,15 +81,6 @@ class LoginFragment : ParentFragment() {
         binding.edtPhone.tag=resources.getString(R.string.phone)
         binding.edtPassword.tag=resources.getString(R.string.password)
 
-        /*if (Validator().checkConnection(context)){
-            Toast.makeText(
-                    context,
-                    resources.getString(R.string.no_internet_connection),
-                    Toast.LENGTH_LONG
-            ).show()
-            return
-        }*/
-
         val editTexts = arrayOf<EditText>(
                 binding.edtPhone,
                 binding.edtPassword

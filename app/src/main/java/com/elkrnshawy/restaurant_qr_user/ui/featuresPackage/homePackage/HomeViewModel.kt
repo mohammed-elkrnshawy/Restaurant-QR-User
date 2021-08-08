@@ -90,17 +90,14 @@ class HomeViewModel : ViewModel() {
                     if (response.body()?.getStatus()!!){
                         dataObserveCurrentOrder.postSuccess(response.body()!!)
                     }else{
-                        Log.e("PRINT_DATA","2")
-                        dataObserveCurrentOrder.postError(GenericError(response.body()!!.getMessage(),null,response.code(),true))
+                        dataObserveCurrentOrder.postError(GenericError(response.body()!!.getMessage(),null,response.code(),false))
                     }
                 }else{
-                    Log.e("PRINT_DATA","3")
                     dataObserveCurrentOrder.postError(GenericError(response.message(),null,null,true))
                 }
             }
 
             override fun onFailure(call: Call<CurrentOrderResponse?>, t: Throwable) {
-                Log.e("PRINT_DATA","1")
                 dataObserveCurrentOrder.postError(GenericError("",null,null,true))
             }
         })
